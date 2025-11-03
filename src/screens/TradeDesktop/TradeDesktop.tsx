@@ -351,14 +351,13 @@ export const TradeDesktop = (): JSX.Element => {
                 <Tabs
                   value={activePositionTab}
                   onValueChange={setActivePositionTab}
-                  className="flex flex-col items-start gap-2.5 p-4 border border-[#7878801f] rounded-lg mb-4 backdrop-blur-[30px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(30px)_brightness(100%)]"
-                >
+className="flex flex-col items-start gap-2.5 p-4 self-stretch w-full border-b [border-bottom-style:solid] border-[#7878801f] relative flex-[0_0_auto] bg-gradient-to-r from-[rgb(8,15,17)] via-[rgb(12,19,22)] to-[rgb(8,15,17)]"                >
                   <TabsList className="inline-flex items-center gap-4 bg-transparent p-0 h-auto">
                     {positionTabs.map((tab) => (
                       <TabsTrigger
                         key={tab.id}
                         value={tab.id}
-                        className="gap-2.5 inline-flex items-center justify-center bg-transparent p-0 h-auto data-[state=active]:shadow-none"
+                        className="gap-2.5 inline-flex items-center justify-center bg-transparent p-0 h-auto data-[state=active]:shadow-none data-[state=active]:bg-transparent data-[state=active]:text-inherit hover:bg-transparent"
                       >
                         <div
                           className={`text-[length:var(--body-2-semi-bold-font-size)] leading-[var(--body-2-semi-bold-line-height)] font-body-2-semi-bold font-[number:var(--body-2-semi-bold-font-weight)] ${
@@ -371,7 +370,6 @@ export const TradeDesktop = (): JSX.Element => {
                     ))}
                   </TabsList>
                 </Tabs>
-
                 <section className="flex flex-col items-start gap-4 p-4 border border-[#7878801f] rounded-lg backdrop-blur-[30px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(30px)_brightness(100%)]">
                   <div className="flex items-center justify-between w-full">
                     <div className="flex flex-col items-start justify-center">
@@ -432,28 +430,28 @@ export const TradeDesktop = (): JSX.Element => {
                   </div>
                 </section>
 
-                <div className="flex items-center justify-around px-4 py-3 mt-4 border border-[#7878801f] rounded-lg backdrop-blur-[30px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(30px)_brightness(100%)] shadow-blur-60">
-                  <div className="flex items-center gap-2 w-full">
-                    <Button variant="outline" className="flex justify-between px-2 py-1 flex-1 bg-[#ffffff0f] rounded items-center h-auto">
-                      <div className="inline-flex items-center gap-1">
-                        <div className="flex w-5 h-5 items-center gap-[3.33px] p-0.5 bg-white rounded-sm">
-                          <img className="w-[15px] h-[15px]" alt="Image" src="/image-4.png" />
-                        </div>
-                        <div className="font-body-2-semi-bold font-[number:var(--body-2-semi-bold-font-weight)] text-[#ffffffd1] text-[length:var(--body-2-semi-bold-font-size)]">
-                          Manchester city
-                        </div>
-                      </div>
-                      <ChevronDownIcon className="w-6 h-6" />
-                    </Button>
+<div className="flex items-center justify-around px-4 py-3 mt-4 border border-[#7878801f] rounded-lg backdrop-blur-[30px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(30px)_brightness(100%)] shadow-blur-60 bg-[rgb(15,15,15)]">
+  <div className="flex items-center gap-2 w-full">
+    <Button variant="outline" className="flex justify-between px-2 py-1 flex-1 bg-[rgb(29,29,29)] rounded items-center h-auto border-[#7878801f]">
+      <div className="inline-flex items-center gap-1">
+        <div className="flex w-5 h-5 items-center gap-[3.33px] p-0.5 bg-white rounded-sm">
+          <img className="w-[15px] h-[15px]" alt="Image" src="/image-4.png" />
+        </div>
+        <div className="font-body-2-semi-bold font-[number:var(--body-2-semi-bold-font-weight)] text-[#ffffffd1] text-[length:var(--body-2-semi-bold-font-size)]">
+          Manchester city
+        </div>
+      </div>
+      <ChevronDownIcon className="w-6 h-6" />
+    </Button>
 
-                    <Button variant="outline" className="flex gap-2 px-2 py-1.5 flex-1 bg-[#ffffff0f] rounded items-center h-auto">
-                      <InfoIcon className="w-5 h-5" />
-                      <div className="font-body-2-semi-bold font-[number:var(--body-2-semi-bold-font-weight)] text-[#ffffffd1] text-[length:var(--body-2-semi-bold-font-size)]">
-                        View team info
-                      </div>
-                    </Button>
-                  </div>
-                </div>
+    <Button variant="outline" className="flex gap-2 px-2 py-1.5 flex-1 bg-[rgb(29,29,29)] rounded items-center h-auto border-[#7878801f]">
+      <InfoIcon className="w-5 h-5" />
+      <div className="font-body-2-semi-bold font-[number:var(--body-2-semi-bold-font-weight)] text-[#ffffffd1] text-[length:var(--body-2-semi-bold-font-size)]">
+        View team info
+      </div>
+    </Button>
+  </div>
+</div>
               </div>
             </div>
           </div>

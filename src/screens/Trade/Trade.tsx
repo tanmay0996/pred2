@@ -159,7 +159,7 @@ export const Trade = (): JSX.Element => {
               <div className="inline-flex items-center gap-2 relative flex-[0_0_auto] rounded-sm overflow-hidden">
                 <Button
                   variant="outline"
-                  className="inline-flex justify-center gap-1 px-3 py-2 flex-[0_0_auto] rounded-sm border border-solid border-[#7878801f] items-center relative h-auto"
+                  className="inline-flex justify-center gap-1 px-3 py-2 flex-[0_0_auto] rounded-sm border border-solid border-[#7878801f] items-center relative h-auto bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)]"
                 >
                   <img
                     className="relative w-4 h-4"
@@ -174,7 +174,7 @@ export const Trade = (): JSX.Element => {
                 <Button
                   variant="outline"
                   size="icon"
-                  className="inline-flex items-center justify-center p-1 relative flex-[0_0_auto] rounded-sm overflow-hidden border border-solid border-[#7878801f] h-auto"
+                  className="inline-flex items-center justify-center p-1 relative flex-[0_0_auto] rounded-sm overflow-hidden border border-solid border-[#7878801f] h-auto bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)]"
                 >
                   <div className="relative w-[25.88px] h-[25.88px] mt-[-0.94px] mb-[-0.94px] ml-[-0.94px] mr-[-0.94px] rounded-[86.13px] border-[0.94px] border-solid border-white">
                     <div className="w-[92.75%] h-[92.75%] rounded-xl bg-[linear-gradient(180deg,rgba(157,253,227,1)_0%,rgba(227,131,216,1)_100%)]" />
@@ -472,8 +472,7 @@ export const Trade = (): JSX.Element => {
             <Tabs
               value={activePositionTab}
               onValueChange={setActivePositionTab}
-              className="flex flex-col items-start gap-2.5 p-4 self-stretch w-full border-b [border-bottom-style:solid] border-[#7878801f] relative flex-[0_0_auto]"
-            >
+className="flex flex-col items-start gap-2.5 p-4 self-stretch w-full border-b [border-bottom-style:solid] border-[#7878801f] relative flex-[0_0_auto] bg-gradient-to-r from-[rgb(8,15,17)] via-[rgb(12,19,22)] to-[rgb(8,15,17)]"            >
               <TabsList className="inline-flex items-center gap-4 relative flex-[0_0_auto] bg-transparent p-0 h-auto">
                 {positionTabs.map((tab) => (
                   <TabsTrigger
@@ -576,12 +575,12 @@ export const Trade = (): JSX.Element => {
             </section>
           </div>
 
-          <footer className="flex flex-col w-[412px] items-start absolute left-0 bottom-0 backdrop-blur-[30px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(30px)_brightness(100%)] bg-[linear-gradient(0deg,rgba(156,156,156,1)_0%,rgba(156,156,156,1)_100%),linear-gradient(0deg,rgba(37,37,37,0.3)_0%,rgba(37,37,37,0.3)_100%)] bg-fills-1 shadow-blur-60">
+          <footer className="flex flex-col w-[412px] items-start absolute left-0 bottom-0 backdrop-blur-[30px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(30px)_brightness(100%)] bg-[rgb(15,15,15)] shadow-blur-60">
             <div className="flex items-center justify-around px-4 py-3 flex-[0_0_auto] relative self-stretch w-full border-t [border-top-style:solid] border-[#7878801f] backdrop-blur-[30px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(30px)_brightness(100%)] shadow-blur-60">
               <div className="flex w-[380px] items-center gap-2 relative">
                 <Button
                   variant="outline"
-                  className="flex justify-between px-2 py-1 flex-1 grow bg-[#ffffff0f] rounded items-center relative h-auto"
+                  className="flex justify-between px-2 py-1 flex-1 grow bg-[rgb(29,29,29)] rounded items-center relative h-auto border-[#7878801f]"
                 >
                   <div className="inline-flex items-center gap-1 relative flex-[0_0_auto]">
                     <div className="flex w-5 h-5 items-center gap-[3.33px] p-0.5 relative bg-white rounded-sm">
@@ -600,7 +599,7 @@ export const Trade = (): JSX.Element => {
 
                 <Button
                   variant="outline"
-                  className="flex gap-2 px-2 py-1.5 flex-1 grow bg-[#ffffff0f] rounded items-center relative h-auto"
+                  className="flex gap-2 px-2 py-1.5 flex-1 grow bg-[rgb(29,29,29)] rounded items-center relative h-auto border-[#7878801f]"
                 >
                   <InfoIcon className="relative w-5 h-5" />
                   <div className="relative flex items-center justify-center w-fit font-body-2-semi-bold font-[number:var(--body-2-semi-bold-font-weight)] text-[#ffffffd1] text-[length:var(--body-2-semi-bold-font-size)] text-center tracking-[var(--body-2-semi-bold-letter-spacing)] leading-[var(--body-2-semi-bold-line-height)] whitespace-nowrap [font-style:var(--body-2-semi-bold-font-style)]">
@@ -610,7 +609,7 @@ export const Trade = (): JSX.Element => {
               </div>
             </div>
 
-            <nav className="h-16 relative self-stretch w-full border-t [border-top-style:solid] border-[#7878801f] backdrop-blur-[30px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(30px)_brightness(100%)] shadow-blur-60">
+            <nav className="h-16 relative self-stretch w-full border-t [border-top-style:solid] border-[#7878801f] backdrop-blur-[30px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(30px)_brightness(100%)] shadow-blur-60 bg-[rgb(15,15,15)]">
               <div className="flex w-full items-start justify-between relative top-[calc(50.00%_-_21px)]">
                 {bottomNavItems.map((item) => (
                   <Button
@@ -639,46 +638,7 @@ export const Trade = (): JSX.Element => {
           </footer>
         </div>
 
-        <footer className="relative w-[412px] h-[79px]">
-          <div className="absolute left-0 bottom-0 h-[79px] flex items-end w-full bg-[#33373a]">
-            <div className="flex mb-[38px] h-[26px] ml-[22px] mr-[21px] flex-1 relative w-[369px] items-center justify-between">
-              <img
-                className="relative w-5 h-5"
-                alt="Icons chrome"
-                src="/-icons-chrome-backward.svg"
-              />
-              <img
-                className="relative w-[20.5px] h-[20.5px]"
-                alt="Icons chrome forward"
-                src="/-icons-chrome-forward.svg"
-              />
-              <img
-                className="relative w-[26px] h-[26px]"
-                alt="Icons chrome new tab"
-                src="/-icons-chrome-new-tab.svg"
-              />
-              <div className="relative w-[26px] h-[26px] overflow-hidden">
-                <div className="relative h-[92.29%] top-[3.85%] left-[3.85%]">
-                  <div className="absolute right-1 bottom-1 w-5 [font-family:'Inter',Helvetica] font-semibold text-[#ffffffcc] text-[13px] text-center tracking-[0] leading-[normal]">
-                    4
-                  </div>
-                  <div className="absolute top-[calc(50.00%_-_12px)] left-[calc(50.00%_-_13px)] w-6 h-6 rounded-md border-2 border-solid border-[#ffffffcc]" />
-                </div>
-              </div>
-              <div className="relative w-5 h-5">
-                <img
-                  className="absolute top-2 left-0 w-5 h-[5px]"
-                  alt="More"
-                  src="/more.svg"
-                />
-              </div>
-            </div>
-          </div>
-
-          <div className="absolute w-full left-0 bottom-0 h-[34px] flex items-end justify-center bg-[#33373a]">
-            <div className="mb-2 w-[134px] h-[5px] bg-white rounded-[100px]" />
-          </div>
-        </footer>
+       
       </div>
     </div>
   );
