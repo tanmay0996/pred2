@@ -455,8 +455,7 @@ export const Trade = (): JSX.Element => {
               </aside>
             </section>
 
-            <section className="flex items-center justify-between px-4 py-3 relative self-stretch w-full flex-[0_0_auto] border-b [border-bottom-style:solid] border-[#7878801f] bg-[linear-gradient(0deg,rgba(156,156,156,0.5)_0%,rgba(156,156,156,0.5)_100%),linear-gradient(0deg,rgba(37,37,37,0.3)_0%,rgba(37,37,37,0.3)_100%)]">
-              <div className="relative w-fit font-body-2-medium font-[number:var(--body-2-medium-font-weight)] text-[#ffffffd1] text-[length:var(--body-2-medium-font-size)] tracking-[var(--body-2-medium-letter-spacing)] leading-[var(--body-2-medium-line-height)] whitespace-nowrap [font-style:var(--body-2-medium-font-style)]">
+<section className="flex items-center justify-between px-4 py-3 relative self-stretch w-full flex-[0_0_auto] border-b [border-bottom-style:solid] border-[#7878801f] bg-[rgb(19,28,30)]">              <div className="relative w-fit font-body-2-medium font-[number:var(--body-2-medium-font-weight)] text-[#ffffffd1] text-[length:var(--body-2-medium-font-size)] tracking-[var(--body-2-medium-letter-spacing)] leading-[var(--body-2-medium-line-height)] whitespace-nowrap [font-style:var(--body-2-medium-font-style)]">
                 EPL
               </div>
               <div className="inline-flex gap-2 flex-[0_0_auto] items-center relative">

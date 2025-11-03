@@ -340,8 +340,7 @@ export const TradeDesktop = (): JSX.Element => {
               </div>
 
               <div className="col-span-4">
-                <section className="flex items-center justify-between px-4 py-3 mb-4 border border-[#7878801f] rounded-lg bg-[linear-gradient(0deg,rgba(156,156,156,0.5)_0%,rgba(156,156,156,0.5)_100%),linear-gradient(0deg,rgba(37,37,37,0.3)_0%,rgba(37,37,37,0.3)_100%)]">
-                  <div className="font-body-2-medium font-[number:var(--body-2-medium-font-weight)] text-[#ffffffd1] text-[length:var(--body-2-medium-font-size)]">
+<section className="flex items-center justify-between px-4 py-3 relative self-stretch w-full flex-[0_0_auto] border-b [border-bottom-style:solid] border-[#7878801f] bg-[rgb(19,28,30)]">                  <div className="font-body-2-medium font-[number:var(--body-2-medium-font-weight)] text-[#ffffffd1] text-[length:var(--body-2-medium-font-size)]">
                     EPL
                   </div>
                   <Button variant="ghost" size="icon" className="w-6 h-6 h-auto">
