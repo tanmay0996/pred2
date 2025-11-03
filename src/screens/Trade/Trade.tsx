@@ -122,7 +122,7 @@ export const Trade = (): JSX.Element => {
             </div>
           </div>
         </header> */}
-{/*header*/ }
+        {/*header*/}
         <div className="relative w-[412px] h-[1042px] overflow-y-scroll">
           <div className="absolute top-0 left-0 w-[412px] h-[811px] flex items-center justify-center bg-gray-900 overflow-hidden">
             <div className="mt-[-540.3px] h-[1146.73px] w-[814px] rounded-[407px/573.37px] blur-[52.45px] [background:radial-gradient(50%_50%_at_50%_26%,rgba(98,98,98,0.3)_0%,rgba(45,106,126,0.3)_52%,rgba(22,43,50,0.37)_99%)]" />
@@ -183,7 +183,9 @@ export const Trade = (): JSX.Element => {
               </div>
             </nav>
 
-<nav className="flex w-[412px] items-center gap-4 px-4 py-3 relative flex-[0_0_auto] border-t [border-top-style:solid] border-b [border-bottom-style:solid] border-[#7878801f] bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]">              {navigationTabs.map((tab) => (
+            <nav className="flex w-[412px] items-center gap-4 px-4 py-3 relative flex-[0_0_auto] border-t [border-top-style:solid] border-b [border-bottom-style:solid] border-[#7878801f] bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]">
+              {" "}
+              {navigationTabs.map((tab) => (
                 <Button
                   key={tab.id}
                   variant="ghost"
@@ -256,8 +258,7 @@ export const Trade = (): JSX.Element => {
               </div>
             </section>
 
-            <section className="w-[412px] items-center justify-between flex-[0_0_auto] overflow-hidden border-t [border-top-style:solid] border-b [border-bottom-style:solid] border-[#7878801f] flex relative">
-              <div className="flex flex-col items-start px-0 py-3 relative flex-1 self-stretch grow">
+<section className="w-[412px] items-center justify-between flex-[0_0_auto] overflow-hidden border-t [border-top-style:solid] border-b [border-bottom-style:solid] border-[#7878801f] flex relative bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]">              <div className="flex flex-col items-start px-0 py-3 relative flex-1 self-stretch grow">
                 <div className="flex flex-col items-start gap-2.5 px-4 py-0 relative self-stretch w-full flex-[0_0_auto] bg-transparent">
                   <ToggleGroup
                     type="single"
@@ -287,7 +288,7 @@ export const Trade = (): JSX.Element => {
                 <div className="flex flex-col items-start gap-4 p-4 relative self-stretch w-full flex-[0_0_auto]">
                   <Button
                     variant="outline"
-                    className="flex h-8 items-center justify-between pl-2 pr-1 py-0 relative self-stretch w-full rounded-sm border border-solid border-[#7878801f] h-auto"
+                    className="flex h-8 items-center justify-between pl-2 pr-1 py-0 relative self-stretch w-full rounded-sm border border-solid border-[#ffffff33] h-auto bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]"
                   >
                     <div className="relative w-fit font-body-2-medium font-[number:var(--body-2-medium-font-weight)] text-[#ffffffd1] text-[length:var(--body-2-medium-font-size)] tracking-[var(--body-2-medium-letter-spacing)] leading-[var(--body-2-medium-line-height)] whitespace-nowrap [font-style:var(--body-2-medium-font-style)]">
                       Market Price
@@ -299,7 +300,7 @@ export const Trade = (): JSX.Element => {
 
                   <Button
                     variant="outline"
-                    className="flex h-8 items-center justify-between pl-2 pr-1 py-0 relative self-stretch w-full rounded-sm border border-solid border-[#7878801f] h-auto"
+                    className="flex h-8 items-center justify-between pl-2 pr-1 py-0 relative self-stretch w-full rounded-sm border border-solid border-[#ffffff33] h-auto bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]"
                   >
                     <div className="relative w-fit font-body-2-medium font-[number:var(--body-2-medium-font-weight)] text-[#ffffffd1] text-[length:var(--body-2-medium-font-size)] tracking-[var(--body-2-medium-letter-spacing)] leading-[var(--body-2-medium-line-height)] whitespace-nowrap [font-style:var(--body-2-medium-font-style)]">
                       USDC
@@ -316,7 +317,7 @@ export const Trade = (): JSX.Element => {
                       </div>
                     </div>
 
-                    <div className="flex h-8 items-center gap-2 px-1 py-0 relative self-stretch w-full rounded-sm border border-solid border-[#7878801f]">
+                    <div className="flex h-8 items-center gap-2 px-1 py-0 relative self-stretch w-full rounded-sm border border-solid border-[#1B2A30]">
                       <img
                         className="relative w-6 h-6"
                         alt="Custom icons"
@@ -339,7 +340,7 @@ export const Trade = (): JSX.Element => {
                           <Button
                             key={option.value}
                             variant="outline"
-                            className="inline-flex items-center justify-center gap-2.5 px-1 py-0.5 relative flex-[0_0_auto] rounded-sm border border-solid border-[#7878801f] h-auto"
+                            className="inline-flex items-center justify-center gap-2.5 px-1 py-0.5 relative flex-[0_0_auto] rounded-sm border border-solid border-[#ffffff33] h-auto bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]"
                           >
                             <div className="relative w-fit mt-[-1.00px] [font-family:'Inter',Helvetica] font-medium text-[#ffffff99] text-xs tracking-[0] leading-4 whitespace-nowrap">
                               {option.label}
@@ -360,7 +361,7 @@ export const Trade = (): JSX.Element => {
                     onCheckedChange={(checked) =>
                       setReduceOnly(checked as boolean)
                     }
-                    className="relative w-6 h-6"
+                    className="relative w-6 h-6 border border-solid border-white"
                   />
                 </div>
 
