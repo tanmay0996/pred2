@@ -41,13 +41,6 @@ const positionTabs = [
   { id: "history", label: "Trade History" },
 ];
 
-const positionDetails = [
-  { label: "Avg. price", value: "53.5¢" },
-  { label: "Mark price", value: "53.5¢" },
-  { label: "Shares", value: "3,200" },
-  { label: "Current value", value: "$12,200" },
-];
-
 const bottomNavItems = [
   {
     id: "markets",
@@ -77,9 +70,73 @@ export const Trade = (): JSX.Element => {
   const [activeNavTab, setActiveNavTab] = useState("live");
   const [activePositionTab, setActivePositionTab] = useState("positions");
   const [reduceOnly, setReduceOnly] = useState(false);
+  const [orderType, setOrderType] = useState("market");
+  const [currencyType, setCurrencyType] = useState("usdc");
+  const [amount, setAmount] = useState("");
+  const [positions, setPositions] = useState([
+    {
+      id: 1,
+      team: "Arsenal",
+      type: "long",
+      profit: "+$200",
+      percentage: "12.5%",
+      avgPrice: "53.5¢",
+      markPrice: "53.5¢",
+      shares: "3,200",
+      currentValue: "$12,200"
+    }
+  ]);
+  const [orderIdCounter, setOrderIdCounter] = useState(2);
+  const [isOrderTypeOpen, setIsOrderTypeOpen] = useState(false);
+  const [isCurrencyOpen, setIsCurrencyOpen] = useState(false);
+
+  const handlePercentageClick = (percentage: string) => {
+    const available = 265;
+    const percent = parseInt(percentage);
+    const calculatedAmount = (available * percent / 100).toFixed(2);
+    setAmount(calculatedAmount);
+  };
+
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value.replace(/[^0-9.]/g, '');
+    setAmount(value);
+  };
+
+  const handlePlaceOrder = () => {
+    if (!amount || parseFloat(amount) === 0) return;
+    
+    const newPosition = {
+      id: orderIdCounter,
+      team: "MANC",
+      type: tradeType,
+      profit: tradeType === "long" ? `+$${(parseFloat(amount) * 0.3).toFixed(2)}` : `-$${(parseFloat(amount) * 0.3).toFixed(2)}`,
+      percentage: tradeType === "long" ? "30%" : "-30%",
+      avgPrice: "30¢",
+      markPrice: "30¢",
+      shares: currencyType === "usdc" ? `${Math.floor(parseFloat(amount) / 0.3)}` : amount,
+      currentValue: `$${amount}`
+    };
+    
+    setPositions([...positions, newPosition]);
+    setOrderIdCounter(orderIdCounter + 1);
+    setAmount("");
+  };
+
+  const handleClosePosition = (id: number) => {
+    setPositions(positions.filter(pos => pos.id !== id));
+  };
 
   return (
     <div className="bg-gray-900 w-full min-w-[412px] h-screen flex overflow-hidden">
+      <style>{`
+        @keyframes spin-slow {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        .animate-border {
+          animation: spin-slow 3s linear infinite;
+        }
+      `}</style>
       <div className="flex w-[412px] h-screen relative flex-col">
        
         <div className="relative w-[412px] flex-1 overflow-y-auto pb-[180px]">
@@ -113,13 +170,17 @@ export const Trade = (): JSX.Element => {
               </div>
 
               <div className="inline-flex items-center gap-2">
-                <Button variant="outline" className="gap-1 px-3 py-2 h-auto border-[#7878801f] bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)]">
+                <Button variant="outline" className="gap-1 px-3 py-2 h-auto border-[#7878801f] bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)] relative overflow-hidden group">
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="absolute inset-0 animate-border bg-gradient-to-r from-transparent via-[#8cf056] to-transparent" />
+                    <div className="absolute inset-[2px] bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)] rounded" />
+                  </div>
                   <img
-                    className="relative w-4 h-4"
+                    className="relative w-4 h-4 z-10"
                     alt="Image"
                     src="/image-18.png"
                   />
-                  <div className="text-gray-200 text-sm font-semibold whitespace-nowrap">
+                  <div className="text-gray-200 text-sm font-semibold whitespace-nowrap z-10">
                     Earn Rewards
                   </div>
                 </Button>
@@ -199,15 +260,59 @@ export const Trade = (): JSX.Element => {
                 </div>
 
                 <div className="flex flex-col items-start gap-4 p-4 w-full">
-                  <Button variant="outline" className="flex h-8 items-center justify-between pl-2 pr-1 py-0 w-full rounded-sm border-[#ffffff33] h-auto bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]">
-                    <div className="text-gray-200 text-sm">Market Price</div>
-                    <ChevronDown className="w-4 h-4" />
-                  </Button>
+                  <div className="relative w-full">
+                    <Button 
+                      variant="outline" 
+                      onClick={() => setIsOrderTypeOpen(!isOrderTypeOpen)}
+                      className="flex h-8 items-center justify-between pl-2 pr-1 py-0 w-full rounded-sm border-[#ffffff33] h-auto bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]"
+                    >
+                      <div className="text-gray-200 text-sm">{orderType === "market" ? "Market Price" : "Limit Price"}</div>
+                      <ChevronDown className="w-4 h-4" />
+                    </Button>
+                    {isOrderTypeOpen && (
+                      <div className="absolute top-full left-0 right-0 mt-1 bg-[rgb(29,38,40)] border border-[#ffffff33] rounded-sm z-50">
+                        <button 
+                          onClick={() => { setOrderType("market"); setIsOrderTypeOpen(false); }}
+                          className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a]"
+                        >
+                          Market Price
+                        </button>
+                        <button 
+                          onClick={() => { setOrderType("limit"); setIsOrderTypeOpen(false); }}
+                          className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a]"
+                        >
+                          Limit Price
+                        </button>
+                      </div>
+                    )}
+                  </div>
 
-                  <Button variant="outline" className="flex h-8 items-center justify-between pl-2 pr-1 py-0 w-full rounded-sm border-[#ffffff33] h-auto bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]">
-                    <div className="text-gray-200 text-sm">USDC</div>
-                    <ChevronDown className="w-4 h-4" />
-                  </Button>
+                  <div className="relative w-full">
+                    <Button 
+                      variant="outline" 
+                      onClick={() => setIsCurrencyOpen(!isCurrencyOpen)}
+                      className="flex h-8 items-center justify-between pl-2 pr-1 py-0 w-full rounded-sm border-[#ffffff33] h-auto bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]"
+                    >
+                      <div className="text-gray-200 text-sm">{currencyType === "usdc" ? "USDC" : "Shares"}</div>
+                      <ChevronDown className="w-4 h-4" />
+                    </Button>
+                    {isCurrencyOpen && (
+                      <div className="absolute top-full left-0 right-0 mt-1 bg-[rgb(29,38,40)] border border-[#ffffff33] rounded-sm z-50">
+                        <button 
+                          onClick={() => { setCurrencyType("usdc"); setIsCurrencyOpen(false); }}
+                          className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a]"
+                        >
+                          USDC
+                        </button>
+                        <button 
+                          onClick={() => { setCurrencyType("shares"); setIsCurrencyOpen(false); }}
+                          className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a]"
+                        >
+                          Shares
+                        </button>
+                      </div>
+                    )}
+                  </div>
 
                   <div className="flex flex-col items-end w-full">
                     <div className="flex items-center gap-2.5 py-0.5 w-full">
@@ -216,22 +321,40 @@ export const Trade = (): JSX.Element => {
 
                     <div className="flex h-8 items-center gap-2 px-1 py-0 w-full rounded-sm border border-[#1B2A30]">
                       <img
-                        className="relative w-6 h-6"
+                        className="relative w-6 h-6 cursor-pointer"
                         alt="Custom icons"
                         src="/custom-icons-3.svg"
+                        onClick={() => {
+                          const newAmount = Math.max(0, parseFloat(amount || "0") - 10);
+                          setAmount(newAmount.toFixed(2));
+                        }}
                       />
-                      <Input placeholder="$0.00" className="flex-1 text-gray-400 text-sm text-center border-0 bg-transparent p-0 h-auto" />
+                      <Input 
+                        placeholder="$0.00" 
+                        value={amount ? `$${amount}` : ""}
+                        onChange={handleAmountChange}
+                        className="flex-1 text-gray-400 text-sm text-center border-0 bg-transparent p-0 h-auto" 
+                      />
                       <img
-                        className="relative w-6 h-6"
+                        className="relative w-6 h-6 cursor-pointer"
                         alt="Add line"
                         src="/add-line.svg"
+                        onClick={() => {
+                          const newAmount = parseFloat(amount || "0") + 10;
+                          setAmount(newAmount.toFixed(2));
+                        }}
                       />
                     </div>
 
                     <div className="flex flex-col items-end gap-2.5 py-2 w-full">
                       <div className="inline-flex items-start gap-2">
                         {percentageOptions.map((option) => (
-                          <Button key={option.value} variant="outline" className="px-1 py-0.5 h-auto rounded-sm border-[#ffffff33] bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]">
+                          <Button 
+                            key={option.value} 
+                            variant="outline" 
+                            onClick={() => handlePercentageClick(option.value)}
+                            className="px-1 py-0.5 h-auto rounded-sm border-[#ffffff33] bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]"
+                          >
                             <div className="text-gray-400 text-xs">{option.label}</div>
                           </Button>
                         ))}
@@ -251,11 +374,18 @@ export const Trade = (): JSX.Element => {
                       <div className="text-gray-200 text-sm font-semibold">To Win 🎉</div>
                       <div className="text-gray-300 text-sm">Avg Price 30¢</div>
                     </div>
-                    <div className="flex-1 text-gray-400 text-right">$0</div>
+                    <div className="flex-1 text-gray-400 text-right">
+                      ${amount ? (parseFloat(amount) * (tradeType === "long" ? 1.3 : 0.7)).toFixed(2) : "0"}
+                    </div>
                   </div>
 
-                  <Button className="flex justify-center px-3 py-2 w-full bg-[#8cf056] rounded-sm h-auto mt-4">
-                    <div className="flex-1 text-[#111111] font-bold text-center">Long MANC</div>
+                  <Button 
+                    onClick={handlePlaceOrder}
+                    className="flex justify-center px-3 py-2 w-full bg-[#8cf056] rounded-sm h-auto mt-4"
+                  >
+                    <div className="flex-1 text-[#111111] font-bold text-center">
+                      {tradeType === "long" ? "Long MANC" : "Short MANC"}
+                    </div>
                   </Button>
                 </div>
               </div>
@@ -318,51 +448,75 @@ export const Trade = (): JSX.Element => {
               </TabsList>
             </Tabs>
 
-            <section className="flex flex-col w-[412px] items-start gap-4 p-4 relative">
-              <div className="flex items-center justify-between w-full">
-                <div className="flex flex-col w-[125px] items-start justify-center">
-                  <div className="text-gray-200 text-sm font-semibold">Arsenal</div>
-                  <div className="inline-flex items-start">
-                    <div className="text-gray-500 text-sm">Winner </div>
-                    <div className="text-gray-500 text-sm whitespace-nowrap">Long</div>
+            <section className="flex flex-col w-[412px] items-start p-4 relative">
+              {positions.map((position, idx) => (
+                <div key={position.id} className={`w-full relative ${idx < positions.length - 1 ? 'border-b border-[#7878801f] pb-4 mb-4' : 'pb-4'}`}>
+                  <div className="absolute top-0 left-0 w-0.5 h-6">
+                    <div className={`h-full rounded-[20px] ${position.type === "long" ? "bg-[#8cf056]" : "bg-red-500"}`} />
+                  </div>
+
+                  <div className="flex items-center justify-between w-full mb-4 pl-2">
+                    <div className="flex flex-col w-[125px] items-start justify-center">
+                      <div className="text-gray-200 text-sm font-semibold">{position.team}</div>
+                      <div className="inline-flex items-start">
+                        <div className="text-gray-500 text-sm">Winner </div>
+                        <div className="text-gray-500 text-sm whitespace-nowrap capitalize">{position.type}</div>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-col w-20 items-end justify-center">
+                      <div className={`text-sm text-right ${position.type === "long" ? "text-[#8cf056]" : "text-red-500"}`}>
+                        {position.profit}
+                      </div>
+                      <div className="flex max-w-[72px] w-[72px] items-center justify-end">
+                        <img
+                          className="relative w-4 h-4"
+                          alt="Custom icons"
+                          src="/custom-icons.svg"
+                        />
+                        <div className={`text-sm text-right ${position.type === "long" ? "text-[#8cf056]" : "text-red-500"}`}>
+                          {position.percentage}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col items-start gap-2 w-full mb-4">
+                    <div className="flex items-center justify-between w-full">
+                      <div className="text-gray-500 text-sm">Avg. price</div>
+                      <div className="text-gray-200 text-sm">{position.avgPrice}</div>
+                    </div>
+                    <div className="flex items-center justify-between w-full">
+                      <div className="text-gray-500 text-sm">Mark price</div>
+                      <div className="text-gray-200 text-sm">{position.markPrice}</div>
+                    </div>
+                    <div className="flex items-center justify-between w-full">
+                      <div className="text-gray-500 text-sm">Shares</div>
+                      <div className="text-gray-200 text-sm">{position.shares}</div>
+                    </div>
+                    <div className="flex items-center justify-between w-full">
+                      <div className="text-gray-500 text-sm">Current value</div>
+                      <div className="text-gray-200 text-sm">{position.currentValue}</div>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-2 w-full">
+                    <Button 
+                      onClick={() => handleClosePosition(position.id)}
+                      className="flex justify-center px-3 py-2 flex-1 bg-[#78788033] rounded-sm h-auto hover:bg-[#78788050]"
+                    >
+                      <div className="text-gray-200 text-sm font-semibold whitespace-nowrap">Market close</div>
+                    </Button>
+
+                    <Button 
+                      onClick={() => handleClosePosition(position.id)}
+                      className="flex justify-center px-3 py-2 flex-1 bg-[#78788033] rounded-sm h-auto hover:bg-[#78788050]"
+                    >
+                      <div className="text-gray-200 text-sm font-semibold whitespace-nowrap">Limit close</div>
+                    </Button>
                   </div>
                 </div>
-
-                <div className="flex flex-col w-20 items-end justify-center">
-                  <div className="text-[#8cf056] text-sm text-right">+$200</div>
-                  <div className="flex max-w-[72px] w-[72px] items-center justify-end">
-                    <img
-                      className="relative w-4 h-4"
-                      alt="Custom icons"
-                      src="/custom-icons.svg"
-                    />
-                    <div className="text-[#8cf056] text-sm text-right">12.5%</div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex flex-col items-start gap-2 w-full">
-                {positionDetails.map((detail, index) => (
-                  <div key={index} className="flex items-center justify-between w-full">
-                    <div className="text-gray-500 text-sm">{detail.label}</div>
-                    <div className="text-gray-200 text-sm">{detail.value}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="absolute top-[22px] left-0 w-0.5 h-6">
-                <div className="h-full bg-[#8cf056] rounded-[20px]" />
-              </div>
-
-              <div className="flex items-start gap-2 w-full">
-                <Button className="flex justify-center px-3 py-2 flex-1 bg-[#78788033] rounded-sm h-auto">
-                  <div className="text-gray-200 text-sm font-semibold whitespace-nowrap">Market close</div>
-                </Button>
-
-                <Button className="flex justify-center px-3 py-2 flex-1 bg-[#78788033] rounded-sm h-auto">
-                  <div className="text-gray-200 text-sm font-semibold whitespace-nowrap">Limit close</div>
-                </Button>
-              </div>
+              ))}
             </section>
           </div>
         </div>
