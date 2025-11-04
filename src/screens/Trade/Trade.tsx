@@ -207,7 +207,7 @@ export const Trade = (): JSX.Element => {
                 />
                 <MotionButton
                   variant="ghost"
-                  className="gap-2 px-2 py-1 h-auto"
+                  className="gap-2 px-2 py-1 h-auto bg-transparent hover:bg-transparent active:bg-transparent focus:bg-transparent focus-visible:ring-0 text-gray-200"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
                   transition={{ type: "spring", stiffness: 300, damping: 25, duration: 0.8 }}
