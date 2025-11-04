@@ -5,6 +5,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { motion } from "framer-motion";
 
 const navigationTabs = [
   { id: "live", label: "Live & Upcoming", icon: true },
@@ -66,6 +67,7 @@ const bottomNavItems = [
 ];
 
 export const Trade = (): JSX.Element => {
+  const MotionButton = motion(Button as any);
   const [tradeType, setTradeType] = useState("long");
   const [activeNavTab, setActiveNavTab] = useState("live");
   const [activePositionTab, setActivePositionTab] = useState("positions");
@@ -175,7 +177,13 @@ export const Trade = (): JSX.Element => {
                   alt="Frame"
                   src="/frame-806.svg"
                 />
-                <Button variant="ghost" className="gap-2 px-2 py-1 h-auto">
+                <MotionButton
+                  variant="ghost"
+                  className="gap-2 px-2 py-1 h-auto"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                >
                   <div className="inline-flex items-center gap-1">
                     <div className="flex w-5 h-5 items-center gap-[3.33px] p-0.5 bg-white rounded-sm">
                       <img
@@ -189,7 +197,7 @@ export const Trade = (): JSX.Element => {
                     </div>
                   </div>
                   <ChevronDown className="w-6 h-6" />
-                </Button>
+                </MotionButton>
               </div>
 
               <div className="inline-flex items-center gap-2">
@@ -197,7 +205,13 @@ export const Trade = (): JSX.Element => {
                   <div className="absolute inset-0 rounded overflow-hidden">
                     <div className="absolute inset-[-100%] animate-border-spin bg-[conic-gradient(from_0deg,transparent_0deg_340deg,#8cf056_340deg_360deg)]" />
                   </div>
-                  <Button variant="outline" className="gap-1 px-3 py-2 h-auto border-[#7878801f] bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)] relative">
+                  <MotionButton
+                    variant="outline"
+                    className="gap-1 px-3 py-2 h-auto border-[#7878801f] bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)] relative"
+                    whileHover={{ scale: 1.04, boxShadow: "0 0 20px rgba(140,240,86,0.25)" }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  >
                     <img
                       className="relative w-4 h-4"
                       alt="Image"
@@ -206,23 +220,33 @@ export const Trade = (): JSX.Element => {
                     <div className="text-gray-200 text-sm font-semibold whitespace-nowrap">
                       Earn Rewards
                     </div>
-                  </Button>
+                  </MotionButton>
                 </div>
-                <Button variant="outline" size="icon" className="p-1 h-auto border-[#7878801f] bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)]">
+                <MotionButton
+                  variant="outline"
+                  size="icon"
+                  className="p-1 h-auto border-[#7878801f] bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)]"
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                >
                   <div className="relative w-[25.88px] h-[25.88px] mt-[-0.94px] mb-[-0.94px] ml-[-0.94px] mr-[-0.94px] rounded-[86.13px] border-[0.94px] border-solid border-white">
                     <div className="w-[92.75%] h-[92.75%] rounded-xl bg-[linear-gradient(180deg,rgba(157,253,227,1)_0%,rgba(227,131,216,1)_100%)]" />
                   </div>
-                </Button>
+                </MotionButton>
               </div>
             </nav>
 
             <nav className="flex w-[412px] items-center gap-4 px-4 py-3 border-t border-b border-[#7878801f] bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]">
               {navigationTabs.map((tab) => (
-                <Button
+                <MotionButton
                   key={tab.id}
                   variant="ghost"
                   onClick={() => setActiveNavTab(tab.id)}
                   className={`gap-2 h-auto px-0 ${tab.id === activeNavTab ? "text-gray-200" : "text-gray-400"}`}
+                  whileHover={{ y: -1, color: "#e5e7eb" }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 >
                   {tab.icon && tab.id === "live" && <PlayCircle className="w-4 h-4" />}
                   {!tab.icon && (
@@ -235,7 +259,7 @@ export const Trade = (): JSX.Element => {
                     </div>
                   )}
                   <div className="text-sm font-semibold whitespace-nowrap">{tab.label}</div>
-                </Button>
+                </MotionButton>
               ))}
             </nav>
 
@@ -270,13 +294,13 @@ export const Trade = (): JSX.Element => {
                   >
                     <ToggleGroupItem
                       value="long"
-                      className="flex justify-center px-3 py-1 flex-1 rounded-sm data-[state=on]:bg-[#8cf056] data-[state=on]:text-[#111111] data-[state=off]:bg-transparent data-[state=off]:text-gray-200"
+                      className="flex justify-center px-3 py-1 flex-1 rounded-sm transition-all duration-200 hover:scale-[1.01] data-[state=on]:bg-[#8cf056] data-[state=on]:text-[#111111] data-[state=off]:bg-transparent data-[state=off]:text-gray-200"
                     >
                       <div className="text-sm font-semibold whitespace-nowrap">Long/Buy</div>
                     </ToggleGroupItem>
                     <ToggleGroupItem
                       value="short"
-                      className="flex justify-center px-2 py-1 flex-1 rounded-sm data-[state=on]:bg-[#8cf056] data-[state=on]:text-[#111111] data-[state=off]:bg-transparent data-[state=off]:text-gray-200"
+                      className="flex justify-center px-2 py-1 flex-1 rounded-sm transition-all duration-200 hover:scale-[1.01] data-[state=on]:bg-[#8cf056] data-[state=on]:text-[#111111] data-[state=off]:bg-transparent data-[state=off]:text-gray-200"
                     >
                       <div className="text-sm font-semibold">Short/Sell</div>
                     </ToggleGroupItem>
@@ -285,25 +309,28 @@ export const Trade = (): JSX.Element => {
 
                 <div className="flex flex-col items-start gap-4 p-4 w-full">
                   <div className="relative w-full">
-                    <Button 
+                    <MotionButton 
                       variant="outline" 
                       onClick={() => setIsOrderTypeOpen(!isOrderTypeOpen)}
-                      className="flex h-8 items-center justify-between pl-2 pr-1 py-0 w-full rounded-sm border-[#ffffff33] h-auto bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]"
+                      className="flex h-8 items-center justify-between pl-2 pr-1 py-0 w-full rounded-sm border-[#ffffff33] bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)] transition-all duration-200 hover:scale-[1.01] hover:border-[#ffffff55]"
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.99 }}
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
                     >
                       <div className="text-gray-200 text-sm">{orderType === "market" ? "Market Price" : "Limit Price"}</div>
                       <ChevronDown className="w-4 h-4" />
-                    </Button>
+                    </MotionButton>
                     {isOrderTypeOpen && (
-                      <div className="absolute top-full left-0 right-0 mt-1 bg-[rgb(29,38,40)] border border-[#ffffff33] rounded-sm z-50">
+                      <div className="absolute top-full left-0 right-0 mt-1 bg-[rgb(29,38,40)] border border-[#ffffff33] rounded-sm z-50 overflow-hidden">
                         <button 
                           onClick={() => { setOrderType("market"); setIsOrderTypeOpen(false); }}
-                          className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a]"
+                          className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a] transition-colors duration-150"
                         >
                           Market Price
                         </button>
                         <button 
                           onClick={() => { setOrderType("limit"); setIsOrderTypeOpen(false); }}
-                          className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a]"
+                          className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a] transition-colors duration-150"
                         >
                           Limit Price
                         </button>
@@ -312,25 +339,28 @@ export const Trade = (): JSX.Element => {
                   </div>
 
                   <div className="relative w-full">
-                    <Button 
+                    <MotionButton 
                       variant="outline" 
                       onClick={() => setIsCurrencyOpen(!isCurrencyOpen)}
-                      className="flex h-8 items-center justify-between pl-2 pr-1 py-0 w-full rounded-sm border-[#ffffff33] h-auto bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]"
+                      className="flex h-8 items-center justify-between pl-2 pr-1 py-0 w-full rounded-sm border-[#ffffff33] bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)] transition-all duration-200 hover:scale-[1.01] hover:border-[#ffffff55]"
+                      whileHover={{ scale: 1.01 }}
+                      whileTap={{ scale: 0.99 }}
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
                     >
                       <div className="text-gray-200 text-sm">{currencyType === "usdc" ? "USDC" : "Shares"}</div>
                       <ChevronDown className="w-4 h-4" />
-                    </Button>
+                    </MotionButton>
                     {isCurrencyOpen && (
-                      <div className="absolute top-full left-0 right-0 mt-1 bg-[rgb(29,38,40)] border border-[#ffffff33] rounded-sm z-50">
+                      <div className="absolute top-full left-0 right-0 mt-1 bg-[rgb(29,38,40)] border border-[#ffffff33] rounded-sm z-50 overflow-hidden">
                         <button 
                           onClick={() => { setCurrencyType("usdc"); setIsCurrencyOpen(false); }}
-                          className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a]"
+                          className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a] transition-colors duration-150"
                         >
                           USDC
                         </button>
                         <button 
                           onClick={() => { setCurrencyType("shares"); setIsCurrencyOpen(false); }}
-                          className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a]"
+                          className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a] transition-colors duration-150"
                         >
                           Shares
                         </button>
@@ -373,14 +403,17 @@ export const Trade = (): JSX.Element => {
                     <div className="flex flex-col items-end gap-2.5 py-2 w-full">
                       <div className="inline-flex items-start gap-2">
                         {percentageOptions.map((option) => (
-                          <Button 
+                          <MotionButton 
                             key={option.value} 
                             variant="outline" 
                             onClick={() => handlePercentageClick(option.value)}
                             className="px-1 py-0.5 h-auto rounded-sm border-[#ffffff33] bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]"
+                            whileHover={{ scale: 1.06 }}
+                            whileTap={{ scale: 0.96 }}
+                            transition={{ type: "spring", stiffness: 500, damping: 30 }}
                           >
                             <div className="text-gray-400 text-xs">{option.label}</div>
-                          </Button>
+                          </MotionButton>
                         ))}
                       </div>
                     </div>
@@ -403,14 +436,17 @@ export const Trade = (): JSX.Element => {
                     </div>
                   </div>
 
-                  <Button 
+                  <MotionButton 
                     onClick={handlePlaceOrder}
                     className="flex justify-center px-3 py-2 w-full bg-[#8cf056] rounded-sm h-auto mt-4"
+                    whileHover={{ y: -2, boxShadow: "0 8px 24px rgba(140,240,86,0.35)", filter: "brightness(1.05)" }}
+                    whileTap={{ scale: 0.98, y: 0 }}
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
                   >
                     <div className="flex-1 text-[#111111] font-bold text-center">
                       {tradeType === "long" ? "Long MANC" : "Short MANC"}
                     </div>
-                  </Button>
+                  </MotionButton>
                 </div>
               </div>
 
@@ -423,14 +459,14 @@ export const Trade = (): JSX.Element => {
                 </div>
 
                 {orderBookSellData.map((order, index) => (
-                  <div key={`sell-${index}`} className="h-8 flex items-center w-full">
+                  <motion.div key={`sell-${index}`} className="h-8 flex items-center w-full" whileHover={{ backgroundColor: "rgba(255,255,255,0.05)" }} transition={{ duration: 0.15 }}>
                     <div className="flex h-8 items-center gap-4 px-4 flex-1">
                       <div className="flex items-center justify-between flex-1">
                         <div className="text-red-500 text-sm">{order.price}</div>
                         <div className="text-gray-400 text-sm text-right">{order.shares}</div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
 
                <div className="flex flex-col items-start gap-2.5 px-4 py-2 w-full border-t border-b border-[#7878801f] backdrop-blur-[20px]">
@@ -441,30 +477,37 @@ export const Trade = (): JSX.Element => {
 </div>
 
                 {orderBookBuyData.map((order, index) => (
-                  <div key={`buy-${index}`} className="h-8 flex items-center w-full">
+                  <motion.div key={`buy-${index}`} className="h-8 flex items-center w-full" whileHover={{ backgroundColor: "rgba(255,255,255,0.05)" }} transition={{ duration: 0.15 }}>
                     <div className="flex h-8 items-center gap-4 px-4 flex-1">
                       <div className="flex items-center justify-between flex-1">
                         <div className="text-[#8cf056] text-sm">{order.price}</div>
                         <div className="text-gray-400 text-sm text-right">{order.shares}</div>
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </aside>
             </section>
 
             <section className="flex items-center justify-between px-4 py-3 w-full border-b border-[#7878801f] bg-[rgb(19,28,30)]">
               <div className="text-gray-200 text-sm">EPL</div>
-              <Button variant="ghost" size="icon" className="w-6 h-6 h-auto">
+              <MotionButton
+                variant="ghost"
+                size="icon"
+                className="w-6 h-6"
+                whileHover={{ scale: 1.12 }}
+                whileTap={{ scale: 0.95 }}
+                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+              >
                 <MoreHorizontal className="w-4 h-4" />
-              </Button>
+              </MotionButton>
             </section>
 
             <Tabs value={activePositionTab} onValueChange={setActivePositionTab} className="flex flex-col items-start gap-2.5 p-4 w-full border-b border-[#7878801f] bg-gradient-to-r from-[rgb(8,15,17)] via-[rgb(12,19,22)] to-[rgb(8,15,17)]">
               <TabsList className="inline-flex items-center gap-4 bg-transparent p-0 h-auto">
                 {positionTabs.map((tab) => (
-                  <TabsTrigger key={tab.id} value={tab.id} className="gap-2.5 bg-transparent p-0 h-auto data-[state=active]:shadow-none">
-                    <div className={`text-sm font-semibold ${activePositionTab === tab.id ? "text-gray-200" : "text-gray-500"}`}>
+                  <TabsTrigger key={tab.id} value={tab.id} className="gap-2.5 bg-transparent p-0 h-auto data-[state=active]:shadow-none transition-colors duration-150 hover:text-gray-200">
+                    <div className={`text-sm font-semibold transition-colors duration-150 ${activePositionTab === tab.id ? "text-gray-200" : "text-gray-500"}`}>
                       {tab.label}
                     </div>
                   </TabsTrigger>
@@ -474,7 +517,7 @@ export const Trade = (): JSX.Element => {
 
             <section className="flex flex-col w-[412px] items-start p-4 relative">
               {positions.map((position, idx) => (
-                <div key={position.id} className={`w-full relative ${idx < positions.length - 1 ? 'border-b border-[#7878801f] pb-4 mb-4' : 'pb-4'}`}>
+                <motion.div key={position.id} className={`w-full relative ${idx < positions.length - 1 ? 'border-b border-[#7878801f] pb-4 mb-4' : 'pb-4'}`} whileHover={{ backgroundColor: "rgba(255,255,255,0.05)" }} transition={{ duration: 0.15 }}>
                   <div className="absolute top-0 left-0 w-0.5 h-6">
                     <div className={`h-full rounded-[20px] ${position.type === "long" ? "bg-[#8cf056]" : "bg-red-500"}`} />
                   </div>
@@ -525,21 +568,27 @@ export const Trade = (): JSX.Element => {
                   </div>
 
                   <div className="flex items-start gap-2 w-full">
-                    <Button 
+                    <MotionButton 
                       onClick={() => handleClosePosition(position.id)}
-                      className="flex justify-center px-3 py-2 flex-1 bg-[#78788033] rounded-sm h-auto hover:bg-[#78788050]"
+                      className="flex justify-center px-3 py-2 flex-1 bg-[#78788033] rounded-sm h-auto"
+                      whileHover={{ y: -2, backgroundColor: "rgba(120,120,128,0.4)" }}
+                      whileTap={{ scale: 0.98, y: 0 }}
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
                     >
                       <div className="text-gray-200 text-sm font-semibold whitespace-nowrap">Market close</div>
-                    </Button>
+                    </MotionButton>
 
-                    <Button 
+                    <MotionButton 
                       onClick={() => handleClosePosition(position.id)}
-                      className="flex justify-center px-3 py-2 flex-1 bg-[#78788033] rounded-sm h-auto hover:bg-[#78788050]"
+                      className="flex justify-center px-3 py-2 flex-1 bg-[#78788033] rounded-sm h-auto"
+                      whileHover={{ y: -2, backgroundColor: "rgba(120,120,128,0.4)" }}
+                      whileTap={{ scale: 0.98, y: 0 }}
+                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
                     >
                       <div className="text-gray-200 text-sm font-semibold whitespace-nowrap">Limit close</div>
-                    </Button>
+                    </MotionButton>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </section>
           </div>
@@ -572,15 +621,15 @@ export const Trade = (): JSX.Element => {
           <nav className="h-16 w-full border-t border-[#7878801f]">
             <div className="flex w-full items-center justify-between h-full px-2">
               {bottomNavItems.map((item) => (
-                <Button key={item.id} variant="ghost" className="flex flex-col items-center gap-0.5 flex-1 h-auto p-0">
-                  <div className="flex w-6 h-6 items-center justify-center gap-1 px-[3px] py-0 rounded-sm overflow-hidden">
+                <Button key={item.id} variant="ghost" className="flex flex-col items-center gap-0.5 flex-1 h-auto p-0 transition-transform duration-200 hover:scale-105">
+                  <div className="flex w-6 h-6 items-center justify-center gap-1 px-[3px] py-0 rounded-sm overflow-hidden transition-transform duration-200">
                     <img
-                      className="relative w-4 h-4"
+                      className="relative w-4 h-4 transition-transform duration-200 group-hover:scale-110"
                       alt={item.label}
                       src={item.icon}
                     />
                   </div>
-                  <div className={`text-xs font-semibold ${item.active ? "text-white" : "text-gray-400"}`}>
+                  <div className={`text-xs font-semibold transition-colors duration-150 ${item.active ? "text-white" : "text-gray-400 hover:text-white"}`}>
                     {item.label}
                   </div>
                 </Button>

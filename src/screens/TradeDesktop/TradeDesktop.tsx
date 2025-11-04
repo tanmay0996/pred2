@@ -2,10 +2,8 @@ import {
   ChevronDownIcon,
   GiftIcon,
   InfoIcon,
-  LockIcon,
   MoreHorizontalIcon,
   PlayCircleIcon,
-  ShareIcon,
   Minus as MinusIcon,
   Plus as PlusIcon,
 } from "lucide-react";
@@ -15,6 +13,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import { motion } from "framer-motion";
 
 const navigationTabs = [
   { id: "live", label: "Live & Upcoming", icon: true },
@@ -52,6 +51,7 @@ const positionTabs = [
 ];
 
 export const TradeDesktop = (): JSX.Element => {
+  const MotionButton = motion(Button as any);
   const [tradeType, setTradeType] = useState<string>("long");
   const [activeNavTab, setActiveNavTab] = useState<string>("live");
   const [activePositionTab, setActivePositionTab] = useState<string>("positions");
@@ -170,7 +170,13 @@ export const TradeDesktop = (): JSX.Element => {
             <nav className="flex items-center justify-between p-4 mb-4 backdrop-blur-[30px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(30px)_brightness(100%)] bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)] rounded-lg shadow-blur-60">
               <div className="inline-flex items-center gap-2">
                 <img className="w-8 h-8" alt="Frame" src="/frame-806.svg" />
-                <Button variant="ghost" className="inline-flex gap-2 px-2 py-1 h-auto">
+                <MotionButton
+                  variant="ghost"
+                  className="inline-flex gap-2 px-2 py-1 h-auto"
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                >
                   <div className="inline-flex items-center gap-1">
                     <div className="flex w-5 h-5 items-center gap-[3.33px] p-0.5 bg-white rounded-sm">
                       <img className="w-[15px] h-[15px]" alt="Image" src="/image-4.png" />
@@ -180,36 +186,52 @@ export const TradeDesktop = (): JSX.Element => {
                     </div>
                   </div>
                   <ChevronDownIcon className="w-6 h-6" />
-                </Button>
+                </MotionButton>
               </div>
 
               <div className="inline-flex items-center gap-2 rounded-sm overflow-hidden">
                 <div className="relative p-[2px] rounded overflow-hidden">
                   <div className="absolute inset-[-100%] animate-border-spin bg-[conic-gradient(from_0deg,transparent_0deg_320deg,#8cf056_320deg_360deg)]" />
-                  <Button variant="outline" className="inline-flex justify-center gap-1 px-3 py-2 rounded-sm border-0 h-auto bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)] relative">
+                  <MotionButton
+                    variant="outline"
+                    className="inline-flex justify-center gap-1 px-3 py-2 rounded-sm border-0 h-auto bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)] relative"
+                    whileHover={{ scale: 1.04, boxShadow: "0 0 20px rgba(140,240,86,0.25)" }}
+                    whileTap={{ scale: 0.98 }}
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  >
                     <img className="w-4 h-4" alt="Image" src="/image-18.png" />
                     <div className="font-body-2-semi-bold font-[number:var(--body-2-semi-bold-font-weight)] text-[#ffffffd1] text-[length:var(--body-2-semi-bold-font-size)]">
                       Earn Rewards
                     </div>
-                  </Button>
+                  </MotionButton>
                 </div>
-                <Button variant="outline" size="icon" className="p-1 rounded-sm overflow-hidden border border-solid border-[#7878801f] h-auto bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)]">
+                <MotionButton
+                  variant="outline"
+                  size="icon"
+                  className="p-1 rounded-sm overflow-hidden border border-solid border-[#7878801f] h-auto bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)]"
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                >
                   <div className="w-[25.88px] h-[25.88px] rounded-[86.13px] border-[0.94px] border-solid border-white">
                     <div className="w-[92.75%] h-[92.75%] rounded-xl bg-[linear-gradient(180deg,rgba(157,253,227,1)_0%,rgba(227,131,216,1)_100%)]" />
                   </div>
-                </Button>
+                </MotionButton>
               </div>
             </nav>
 
             <nav className="flex items-center gap-4 px-4 py-3 mb-4 border border-[#7878801f] rounded-lg backdrop-blur-[30px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(30px)_brightness(100%)] bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]">
               {navigationTabs.map((tab) => (
-                <Button
+                <MotionButton
                   key={tab.id}
                   variant="ghost"
                   onClick={() => setActiveNavTab(tab.id)}
                   className={`inline-flex items-center justify-center gap-2 h-auto px-2 ${
                     tab.id === activeNavTab ? "text-gray-200" : "text-gray-400"
-                  } hover:text-gray-200 transition-colors`}
+                  }`}
+                  whileHover={{ y: -1, color: "#e5e7eb" }}
+                  whileTap={{ scale: 0.98 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 >
                   <div className="gap-1 inline-flex items-center justify-center">
                     {tab.icon && tab.id === "live" && <PlayCircleIcon className="w-4 h-4" />}
@@ -222,7 +244,7 @@ export const TradeDesktop = (): JSX.Element => {
                       {tab.label}
                     </div>
                   </div>
-                </Button>
+                </MotionButton>
               ))}
             </nav>
 
@@ -290,16 +312,19 @@ export const TradeDesktop = (): JSX.Element => {
 
                     <div className="flex flex-col items-start gap-4 p-4 w-full">
                       <div className="relative w-full">
-                        <Button 
+                        <MotionButton 
                           variant="outline" 
                           onClick={() => setIsOrderTypeOpen(!isOrderTypeOpen)}
-                          className="flex h-8 items-center justify-between pl-2 pr-1 py-0 w-full rounded-sm border border-solid border-[#7878801f] h-auto bg-[rgb(29,29,29)] hover:border-[#8cf056]/50 hover:bg-[#ffffff0a] transition-colors"
+                          className="flex h-8 items-center justify-between pl-2 pr-1 py-0 w-full rounded-sm border border-solid border-[#7878801f] bg-[rgb(29,29,29)] hover:border-[#8cf056]/50 hover:bg-[#ffffff0a] transition-colors"
+                          whileHover={{ scale: 1.01 }}
+                          whileTap={{ scale: 0.99 }}
+                          transition={{ type: "spring", stiffness: 500, damping: 30 }}
                         >
                           <div className="font-body-2-medium font-[number:var(--body-2-medium-font-weight)] text-[#ffffffd1] text-[length:var(--body-2-medium-font-size)]">
                             {orderType === "market" ? "Market Price" : "Limit Price"}
                           </div>
                           <ChevronDownIcon className="w-4 h-4" />
-                        </Button>
+                        </MotionButton>
                         {isOrderTypeOpen && (
                           <div className="absolute top-full left-0 right-0 mt-1 bg-[rgb(29,38,40)] border border-[#ffffff33] rounded-sm z-50">
                             <button 
@@ -319,16 +344,19 @@ export const TradeDesktop = (): JSX.Element => {
                       </div>
 
                       <div className="relative w-full">
-                        <Button 
+                        <MotionButton 
                           variant="outline" 
                           onClick={() => setIsCurrencyOpen(!isCurrencyOpen)}
-                          className="flex h-8 items-center justify-between pl-2 pr-1 py-0 w-full rounded-sm border border-solid border-[#7878801f] h-auto bg-[rgb(29,29,29)] hover:border-[#8cf056]/50 hover:bg-[#ffffff0a] transition-colors"
+                          className="flex h-8 items-center justify-between pl-2 pr-1 py-0 w-full rounded-sm border border-solid border-[#7878801f] bg-[rgb(29,29,29)] hover:border-[#8cf056]/50 hover:bg-[#ffffff0a] transition-colors"
+                          whileHover={{ scale: 1.01 }}
+                          whileTap={{ scale: 0.99 }}
+                          transition={{ type: "spring", stiffness: 500, damping: 30 }}
                         >
                           <div className="font-body-2-medium font-[number:var(--body-2-medium-font-weight)] text-[#ffffffd1] text-[length:var(--body-2-medium-font-size)]">
                             {currencyType === "usdc" ? "USDC" : "Shares"}
                           </div>
                           <ChevronDownIcon className="w-4 h-4" />
-                        </Button>
+                        </MotionButton>
                         {isCurrencyOpen && (
                           <div className="absolute top-full left-0 right-0 mt-1 bg-[rgb(29,38,40)] border border-[#ffffff33] rounded-sm z-50">
                             <button 
@@ -382,16 +410,19 @@ export const TradeDesktop = (): JSX.Element => {
                         <div className="flex flex-col items-end gap-2.5 px-0 py-2 w-full">
                           <div className="inline-flex items-start gap-2">
                             {percentageOptions.map((option) => (
-                              <Button
+                              <MotionButton
                                 key={option.value}
                                 variant="outline"
                                 onClick={() => handlePercentageClick(option.value)}
                                 className="inline-flex items-center justify-center gap-2.5 px-1 py-0.5 rounded-sm border border-solid border-[#7878801f] h-auto bg-transparent hover:bg-[#ffffff0a] hover:border-[#8cf056]/50 shadow-none focus-visible:ring-0"
+                                whileHover={{ scale: 1.06 }}
+                                whileTap={{ scale: 0.96 }}
+                                transition={{ type: "spring", stiffness: 500, damping: 30 }}
                               >
                                 <div className="[font-family:'Inter',Helvetica] font-medium text-[#ffffff66] text-xs">
                                   {option.label}
                                 </div>
-                              </Button>
+                              </MotionButton>
                             ))}
                           </div>
                         </div>
@@ -420,14 +451,17 @@ export const TradeDesktop = (): JSX.Element => {
                         </div>
                       </div>
 
-                      <Button 
+                      <MotionButton 
                         onClick={handlePlaceOrder}
-                        className="flex justify-center px-3 py-2 w-full bg-[#8cf056] rounded-sm items-center h-auto mt-4 hover:bg-[#8cf056]/90 transition-colors"
+                        className="flex justify-center px-3 py-2 w-full bg-[#8cf056] rounded-sm items-center h-auto mt-4"
+                        whileHover={{ y: -2, boxShadow: "0 8px 24px rgba(140,240,86,0.35)", filter: "brightness(1.05)" }}
+                        whileTap={{ scale: 0.98, y: 0 }}
+                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
                       >
                         <div className="flex-1 font-[number:var(--button-bold-font-weight)] text-[#111111] font-button-bold text-[length:var(--button-bold-font-size)]">
                           {tradeType === "long" ? "Long MANC" : "Short MANC"}
                         </div>
-                      </Button>
+                      </MotionButton>
                     </div>
                   </section>
 
@@ -444,7 +478,7 @@ export const TradeDesktop = (): JSX.Element => {
                     </div>
 
                     {orderBookSellData.map((order, index) => (
-                      <div key={`sell-${index}`} className="h-8 items-center justify-end w-full flex">
+                      <motion.div key={`sell-${index}`} className="h-8 items-center justify-end w-full flex" whileHover={{ backgroundColor: "rgba(255,255,255,0.05)" }} transition={{ duration: 0.15 }}>
                         <div className="flex h-8 items-center justify-end gap-4 px-4 py-0 flex-1">
                           <div className="flex items-center justify-between flex-1">
                             <div className="font-label-regular font-[number:var(--label-regular-font-weight)] text-colorsred text-[length:var(--label-regular-font-size)]">
@@ -455,7 +489,7 @@ export const TradeDesktop = (): JSX.Element => {
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </motion.div>
                     ))}
 
                     <div className="flex flex-col items-start gap-2.5 px-4 py-2 w-full border-t [border-top-style:solid] border-b [border-bottom-style:solid] border-[#7878801f] backdrop-blur-[20px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(20px)_brightness(100%)] shadow-blur-40">
@@ -468,7 +502,7 @@ export const TradeDesktop = (): JSX.Element => {
 </div>
 
                     {orderBookBuyData.map((order, index) => (
-                      <div key={`buy-${index}`} className="h-8 items-center justify-end w-full flex">
+                      <motion.div key={`buy-${index}`} className="h-8 items-center justify-end w-full flex" whileHover={{ backgroundColor: "rgba(255,255,255,0.05)" }} transition={{ duration: 0.15 }}>
                         <div className="flex h-8 items-center justify-end gap-4 px-4 py-0 flex-1">
                           <div className="flex items-center justify-between flex-1">
                             <div className="font-label-regular font-[number:var(--label-regular-font-weight)] text-[#8cf056] text-[length:var(--label-regular-font-size)]">
@@ -479,7 +513,7 @@ export const TradeDesktop = (): JSX.Element => {
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </motion.div>
                     ))}
                   </aside>
                 </div>
@@ -490,9 +524,16 @@ export const TradeDesktop = (): JSX.Element => {
                   <div className="font-body-2-medium font-[number:var(--body-2-medium-font-weight)] text-[#ffffffd1] text-[length:var(--body-2-medium-font-size)]">
                     EPL
                   </div>
-                  <Button variant="ghost" size="icon" className="w-6 h-6 h-auto hover:bg-[#ffffff1a] transition-colors">
+                  <MotionButton
+                    variant="ghost"
+                    size="icon"
+                    className="w-6 h-6 hover:bg-[#ffffff1a] transition-colors"
+                    whileHover={{ scale: 1.12 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  >
                     <MoreHorizontalIcon className="w-4 h-4" />
-                  </Button>
+                  </MotionButton>
                 </section>
 
                 <Tabs
@@ -522,7 +563,7 @@ export const TradeDesktop = (): JSX.Element => {
                 {activePositionTab === "positions" && (
                   <div className="border border-[#7878801f] rounded-b-lg backdrop-blur-[30px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(30px)_brightness(100%)] bg-gradient-to-r from-[rgb(8,15,17)] via-[rgb(12,19,22)] to-[rgb(8,15,17)] max-h-[400px] overflow-y-auto">
                     {positions.map((position, idx) => (
-                      <section key={position.id} className={`flex flex-col items-start gap-4 p-4 relative ${idx < positions.length - 1 ? 'border-b border-[#7878801f]' : ''}`}>
+                      <motion.section key={position.id} className={`flex flex-col items-start gap-4 p-4 relative ${idx < positions.length - 1 ? 'border-b border-[#7878801f]' : ''}`} whileHover={{ backgroundColor: "rgba(255,255,255,0.05)" }} transition={{ duration: 0.15 }}>
                         <div className="absolute top-4 left-0 w-0.5 h-6">
                           <div className={`h-full rounded-[20px] ${position.type === "long" ? "bg-[#8cf056]" : "bg-red-500"}`} />
                         </div>
@@ -591,24 +632,30 @@ export const TradeDesktop = (): JSX.Element => {
                         </div>
 
                         <div className="flex items-start gap-2 w-full">
-                          <Button 
+                          <MotionButton 
                             onClick={() => handleClosePosition(position.id)}
                             className="flex justify-center px-3 py-2 flex-1 bg-[#78788033] rounded-sm backdrop-blur-[30px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(30px)_brightness(100%)] shadow-blur-60 h-auto hover:bg-[#78788050] transition-colors"
+                            whileHover={{ y: -2 }}
+                            whileTap={{ scale: 0.98, y: 0 }}
+                            transition={{ type: "spring", stiffness: 500, damping: 30 }}
                           >
                             <div className="font-[number:var(--body-2-semi-bold-font-weight)] text-[#ffffffd1] font-body-2-semi-bold text-[length:var(--body-2-semi-bold-font-size)]">
                               Market close
                             </div>
-                          </Button>
-                          <Button 
+                          </MotionButton>
+                          <MotionButton 
                             onClick={() => handleClosePosition(position.id)}
                             className="flex justify-center px-3 py-2 flex-1 bg-[#78788033] rounded-sm backdrop-blur-[30px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(30px)_brightness(100%)] shadow-blur-60 h-auto hover:bg-[#78788050] transition-colors"
+                            whileHover={{ y: -2 }}
+                            whileTap={{ scale: 0.98, y: 0 }}
+                            transition={{ type: "spring", stiffness: 500, damping: 30 }}
                           >
                             <div className="font-[number:var(--body-2-semi-bold-font-weight)] text-[#ffffffd1] font-body-2-semi-bold text-[length:var(--body-2-semi-bold-font-size)]">
                               Limit close
                             </div>
-                          </Button>
+                          </MotionButton>
                         </div>
-                      </section>
+                      </motion.section>
                     ))}
                   </div>
                 )}
