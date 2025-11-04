@@ -509,7 +509,7 @@ export const Trade = (): JSX.Element => {
                 </div>
               </motion.div>
 
-              <motion.aside className="flex flex-col w-[180px] border-l border-[#7878801f]" variants={fromRight}>
+              <motion.aside className="flex flex-col w-[180px] border-l border-[#7878801f] bg-transparent" variants={fromRight}>
                 <div className="flex w-[180px] items-center px-4 py-3 border-b border-[#7878801f]">
                   <div className="flex items-center justify-between flex-1">
                     <div className="w-20 text-gray-400 text-sm">Price</div>
@@ -566,7 +566,7 @@ export const Trade = (): JSX.Element => {
             <Tabs value={activePositionTab} onValueChange={setActivePositionTab} className="flex flex-col items-start gap-2.5 p-4 w-full border-b border-[#7878801f] bg-gradient-to-r from-[rgb(8,15,17)] via-[rgb(12,19,22)] to-[rgb(8,15,17)]">
               <TabsList className="inline-flex items-center gap-4 bg-transparent p-0 h-auto">
                 {positionTabs.map((tab) => (
-                  <TabsTrigger key={tab.id} value={tab.id} className="gap-2.5 bg-transparent p-0 h-auto data-[state=active]:shadow-none transition-colors duration-500 hover:text-gray-200">
+                  <TabsTrigger key={tab.id} value={tab.id} className="gap-2.5 bg-transparent hover:bg-transparent active:bg-transparent focus:bg-transparent data-[state=active]:bg-transparent p-0 h-auto data-[state=active]:shadow-none focus-visible:ring-0 transition-colors duration-500 hover:text-gray-200">
                     <div className={`text-sm font-semibold transition-colors duration-500 ${activePositionTab === tab.id ? "text-gray-200" : "text-gray-500"}`}>
                       {tab.label}
                     </div>
