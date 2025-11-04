@@ -1,6 +1,7 @@
 import { ChevronDown, Gift, Info, MoreHorizontal, PlayCircle } from "lucide-react";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Button as MovingBorderButton } from "@/components/ui/moving-border";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -229,27 +230,19 @@ export const Trade = (): JSX.Element => {
               </div>
 
               <div className="inline-flex items-center gap-2">
-                <div className="relative">
-                  <div className="absolute inset-0 rounded overflow-hidden">
-                    <div className="absolute inset-[-100%] animate-border-spin bg-[conic-gradient(from_0deg,transparent_0deg_340deg,#8cf056_340deg_360deg)]" />
+                <MovingBorderButton
+                  borderRadius="0.25rem"
+                  className="gap-1 h-auto px-3 py-2 bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)] text-gray-200 font-semibold border-[#7878801f]"
+                >
+                  <img
+                    className="relative w-4 h-4"
+                    alt="Image"
+                    src="/image-18.png"
+                  />
+                  <div className="text-gray-200 text-sm font-semibold whitespace-nowrap">
+                    Earn Rewards
                   </div>
-                  <MotionButton
-                    variant="outline"
-                    className="gap-1 px-3 py-2 h-auto border-[#7878801f] bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)] relative"
-                    whileHover={{ scale: 1.04, boxShadow: "0 0 20px rgba(140,240,86,0.25)" }}
-                    whileTap={{ scale: 0.98 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 25, duration: 0.8 }}
-                  >
-                    <img
-                      className="relative w-4 h-4"
-                      alt="Image"
-                      src="/image-18.png"
-                    />
-                    <div className="text-gray-200 text-sm font-semibold whitespace-nowrap">
-                      Earn Rewards
-                    </div>
-                  </MotionButton>
-                </div>
+                </MovingBorderButton>
                 <MotionButton
                   variant="outline"
                   size="icon"
