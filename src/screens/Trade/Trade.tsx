@@ -700,7 +700,7 @@ export const Trade = (): JSX.Element => {
           <nav className="h-16 w-full border-t border-[#7878801f]">
             <div className="flex w-full items-center justify-between h-full px-2">
               {bottomNavItems.map((item) => (
-                <Button key={item.id} variant="ghost" className="flex flex-col items-center gap-0.5 flex-1 h-auto p-0 transition-transform duration-200 hover:scale-105">
+                <Button key={item.id} variant="ghost" className="flex flex-col items-center gap-0.5 flex-1 h-auto p-0 transition-transform duration-200 hover:scale-105 bg-transparent hover:bg-transparent active:bg-transparent focus:bg-transparent focus-visible:ring-0">
                   <div className="flex w-6 h-6 items-center justify-center gap-1 px-[3px] py-0 rounded-sm overflow-hidden transition-transform duration-200">
                     <img
                       className="relative w-4 h-4 transition-transform duration-200 group-hover:scale-110"
