@@ -1,21 +1,31 @@
 "use client";
-import React, { useRef, useState } from "react";
-import { motion, useAnimationFrame, useMotionValue, useTransform } from "framer-motion";
+import React, { ComponentType, HTMLAttributes, ReactNode, useRef, useState } from "react";
+import { motion, useAnimationFrame, useMotionValue, useTransform, MotionProps } from "framer-motion";
 
-function cn(...classes) {
+function cn(...classes: (string | undefined | boolean)[]): string {
   return classes.filter(Boolean).join(' ');
 }
+
+type ButtonProps = {
+  borderRadius?: string;
+  children: ReactNode;
+  as?: string | React.ComponentType<any>;
+  containerClassName?: string;
+  borderClassName?: string;
+  duration?: number;
+  className?: string;
+} & HTMLAttributes<HTMLElement> & MotionProps;
 
 export function Button({
   borderRadius = "1.25rem",
   children,
-  as: Component = "button",
+  as: Component = "button" as any,
   containerClassName,
   borderClassName,
-  duration,
+  duration = 3000,
   className,
   ...otherProps
-}) {
+}: ButtonProps) {
   return (
     <Component
       className={cn(
@@ -56,6 +66,15 @@ export function Button({
   );
 }
 
+interface MovingBorderProps {
+  children: ReactNode;
+  duration?: number;
+  strokeWidth?: number;
+  color?: string;
+  segmentPx?: number;
+  [key: string]: any;
+}
+
 export const MovingBorder = ({
   children,
   duration = 3000,
@@ -63,22 +82,24 @@ export const MovingBorder = ({
   color = "#8cf056",
   segmentPx = 120,
   ...otherProps
-}) => {
-  const pathRef = useRef(null);
+}: MovingBorderProps) => {
+  const pathRef = useRef<SVGRectElement>(null);
   const offset = useMotionValue(0);
-  const [length, setLength] = useState(0);
+  const [length, setLength] = useState<number>(0);
 
-  useAnimationFrame((time) => {
-    const len = pathRef.current?.getTotalLength?.() ?? 0;
-    if (len && len !== length) setLength(len);
-    if (len) {
-      const pxPerMs = len / duration;
-      offset.set((time * pxPerMs) % len);
+  useAnimationFrame((time: number) => {
+    if (pathRef.current) {
+      const len = pathRef.current.getTotalLength();
+      if (len && len !== length) setLength(len);
+      if (len) {
+        const pxPerMs = len / duration;
+        offset.set((time * pxPerMs) % len);
+      }
     }
   });
 
-  const dasharray = useTransform(offset, () => {
-    const len = pathRef.current?.getTotalLength?.() ?? length;
+  const dasharray = useTransform(offset, (latest) => {
+    const len = pathRef.current?.getTotalLength() ?? length;
     const seg = Math.min(segmentPx, Math.max(1, len - 1));
     return `${seg} ${Math.max(0, len - seg)}`;
   });
@@ -109,7 +130,7 @@ export const MovingBorder = ({
 };
 
 // Demo component
-export default function App() {
+export function MovingBorderDemo() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-slate-950">
       <Button
