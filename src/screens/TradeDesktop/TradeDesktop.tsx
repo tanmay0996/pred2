@@ -6,6 +6,8 @@ import {
   MoreHorizontalIcon,
   PlayCircleIcon,
   ShareIcon,
+  Minus as MinusIcon,
+  Plus as PlusIcon,
 } from "lucide-react";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -156,21 +158,7 @@ export const TradeDesktop = (): JSX.Element => {
           animation: border-spin 3s linear infinite;
         }
       `}</style>
-      <header className="flex flex-col items-start relative w-full">
-        <div className="relative w-full h-[55px] bg-[#33373a] shadow-[0px_0.4px_0px_#cccccc]">
-          <div className="flex items-center justify-between h-full px-6">
-            <div className="inline-flex items-center gap-2">
-              <LockIcon className="w-4 h-4 text-white" />
-              <div className="[font-family:'Inter',Helvetica] font-normal text-white text-lg">
-                pred.app
-              </div>
-            </div>
-            <Button variant="ghost" size="icon" className="w-[21px] h-[21px]">
-              <ShareIcon className="w-[21px] h-[21px]" />
-            </Button>
-          </div>
-        </div>
-      </header>
+      
 
       <div className="flex-1 overflow-hidden">
         <div className="relative w-full h-full flex items-center justify-center">
@@ -367,24 +355,28 @@ export const TradeDesktop = (): JSX.Element => {
                         </div>
 
                         <div className="flex h-8 items-center gap-2 px-1 py-0 w-full rounded-sm border border-solid border-[#7878801f] hover:border-[#8cf056]/50 transition-colors">
-                          <img 
-                            className="w-6 h-6 cursor-pointer hover:opacity-80 transition-opacity" 
-                            alt="Custom icons" 
-                            src="/custom-icons-3.svg"
+                          <button
+                            type="button"
                             onClick={handleMinusClick}
-                          />
+                            className="inline-flex items-center justify-center w-6 h-6 rounded-sm text-[#ffffffcc] hover:text-white hover:bg-white/10 transition-colors"
+                            aria-label="Decrease amount"
+                          >
+                            <MinusIcon className="w-4 h-4" />
+                          </button>
                           <Input
                             placeholder={inputPlaceholder}
                             value={inputValue}
                             onChange={handleAmountChange}
                             className="flex-1 font-body-2-medium font-[number:var(--body-2-medium-font-weight)] text-[#ffffff66] text-[length:var(--body-2-medium-font-size)] border-0 bg-transparent p-0 h-auto text-center hover:bg-[#ffffff0a] transition-colors"
                           />
-                          <img 
-                            className="w-6 h-6 cursor-pointer hover:opacity-80 transition-opacity" 
-                            alt="Add line" 
-                            src="/add-line.svg"
+                          <button
+                            type="button"
                             onClick={handlePlusClick}
-                          />
+                            className="inline-flex items-center justify-center w-6 h-6 rounded-sm text-[#ffffffcc] hover:text-white hover:bg-white/10 transition-colors"
+                            aria-label="Increase amount"
+                          >
+                            <PlusIcon className="w-4 h-4" />
+                          </button>
                         </div>
 
                         <div className="flex flex-col items-end gap-2.5 px-0 py-2 w-full">
@@ -394,7 +386,7 @@ export const TradeDesktop = (): JSX.Element => {
                                 key={option.value}
                                 variant="outline"
                                 onClick={() => handlePercentageClick(option.value)}
-                                className="inline-flex items-center justify-center gap-2.5 px-1 py-0.5 rounded-sm border border-solid border-[#7878801f] h-auto hover:border-[#8cf056]/50 transition-colors"
+                                className="inline-flex items-center justify-center gap-2.5 px-1 py-0.5 rounded-sm border border-solid border-[#7878801f] h-auto bg-transparent hover:bg-[#ffffff0a] hover:border-[#8cf056]/50 shadow-none focus-visible:ring-0"
                               >
                                 <div className="[font-family:'Inter',Helvetica] font-medium text-[#ffffff66] text-xs">
                                   {option.label}
