@@ -351,7 +351,7 @@ export const Trade = (): JSX.Element => {
                       }}
                     >
                       <div className="text-gray-200 text-sm">{orderType === "market" ? "Market Price" : "Limit Price"}</div>
-                      <ChevronDown className="w-4 h-4" />
+                      <ChevronDown className="w-4 h-4 text-gray-200" />
                     </MotionButton>
                     <AnimatePresence>
                     {isOrderTypeOpen && (
@@ -394,7 +394,7 @@ export const Trade = (): JSX.Element => {
                       }}
                     >
                       <div className="text-gray-200 text-sm">{currencyType === "usdc" ? "USDC" : "Shares"}</div>
-                      <ChevronDown className="w-4 h-4" />
+                      <ChevronDown className="w-4 h-4 text-gray-200" />
                     </MotionButton>
                     <AnimatePresence>
                     {isCurrencyOpen && (
