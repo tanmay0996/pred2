@@ -136,6 +136,29 @@ export const Trade = (): JSX.Element => {
         .animate-border {
           animation: spin-slow 3s linear infinite;
         }
+        @keyframes border-spin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+        .animate-border-spin {
+          animation: border-spin 3s linear infinite;
+        }
+        .animate-border-spin::before {
+          content: '';
+          position: absolute;
+          inset: -2px;
+          border-radius: inherit;
+          padding: 2px;
+          background: linear-gradient(90deg, transparent, #8cf056, transparent);
+          -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+          -webkit-mask-composite: xor;
+          mask-composite: exclude;
+          animation: border-spin 3s linear infinite;
+        }
       `}</style>
       <div className="flex w-[412px] h-screen relative flex-col">
        
@@ -170,20 +193,21 @@ export const Trade = (): JSX.Element => {
               </div>
 
               <div className="inline-flex items-center gap-2">
-                <Button variant="outline" className="gap-1 px-3 py-2 h-auto border-[#7878801f] bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)] relative overflow-hidden group">
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <div className="absolute inset-0 animate-border bg-gradient-to-r from-transparent via-[#8cf056] to-transparent" />
-                    <div className="absolute inset-[2px] bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)] rounded" />
+                <div className="relative">
+                  <div className="absolute inset-0 rounded overflow-hidden">
+                    <div className="absolute inset-[-100%] animate-border-spin bg-[conic-gradient(from_0deg,transparent_0deg_340deg,#8cf056_340deg_360deg)]" />
                   </div>
-                  <img
-                    className="relative w-4 h-4 z-10"
-                    alt="Image"
-                    src="/image-18.png"
-                  />
-                  <div className="text-gray-200 text-sm font-semibold whitespace-nowrap z-10">
-                    Earn Rewards
-                  </div>
-                </Button>
+                  <Button variant="outline" className="gap-1 px-3 py-2 h-auto border-[#7878801f] bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)] relative">
+                    <img
+                      className="relative w-4 h-4"
+                      alt="Image"
+                      src="/image-18.png"
+                    />
+                    <div className="text-gray-200 text-sm font-semibold whitespace-nowrap">
+                      Earn Rewards
+                    </div>
+                  </Button>
+                </div>
                 <Button variant="outline" size="icon" className="p-1 h-auto border-[#7878801f] bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)]">
                   <div className="relative w-[25.88px] h-[25.88px] mt-[-0.94px] mb-[-0.94px] ml-[-0.94px] mr-[-0.94px] rounded-[86.13px] border-[0.94px] border-solid border-white">
                     <div className="w-[92.75%] h-[92.75%] rounded-xl bg-[linear-gradient(180deg,rgba(157,253,227,1)_0%,rgba(227,131,216,1)_100%)]" />
