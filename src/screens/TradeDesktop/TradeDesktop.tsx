@@ -459,13 +459,13 @@ export const TradeDesktop = (): JSX.Element => {
                     ))}
 
                     <div className="flex flex-col items-start gap-2.5 px-4 py-2 w-full border-t [border-top-style:solid] border-b [border-bottom-style:solid] border-[#7878801f] backdrop-blur-[20px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(20px)_brightness(100%)] shadow-blur-40">
-                      <div className="flex items-center justify-between w-full">
-                        <div className="font-body-1-semi-bold font-[number:var(--body-1-semi-bold-font-weight)] text-[#ffffffd1] text-[length:var(--body-1-semi-bold-font-size)]">
-                          29.9¢
-                        </div>
-                        <GiftIcon className="w-4 h-4" />
-                      </div>
-                    </div>
+  <div className="flex items-center justify-between w-full">
+    <div className="font-body-1-semi-bold font-[number:var(--body-1-semi-bold-font-weight)] text-[#ffffffd1] text-[length:var(--body-1-semi-bold-font-size)]">
+      29.9¢
+    </div>
+    <GiftIcon className="w-4 h-4 text-white" />
+  </div>
+</div>
 
                     {orderBookBuyData.map((order, index) => (
                       <div key={`buy-${index}`} className="h-8 items-center justify-end w-full flex">

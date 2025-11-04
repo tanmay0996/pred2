@@ -433,12 +433,12 @@ export const Trade = (): JSX.Element => {
                   </div>
                 ))}
 
-                <div className="flex flex-col items-start gap-2.5 px-4 py-2 w-full border-t border-b border-[#7878801f] backdrop-blur-[20px]">
-                  <div className="flex items-center justify-between w-full">
-                    <div className="text-gray-200 text-base font-semibold">29.9¢</div>
-                    <Gift className="w-4 h-4" />
-                  </div>
-                </div>
+               <div className="flex flex-col items-start gap-2.5 px-4 py-2 w-full border-t border-b border-[#7878801f] backdrop-blur-[20px]">
+  <div className="flex items-center justify-between w-full">
+    <div className="text-white text-base font-semibold">29.9¢</div>
+    <Gift className="w-4 h-4 text-white" />
+  </div>
+</div>
 
                 {orderBookBuyData.map((order, index) => (
                   <div key={`buy-${index}`} className="h-8 flex items-center w-full">
