@@ -226,7 +226,7 @@ export const TradeDesktop = (): JSX.Element => {
                   key={tab.id}
                   variant="ghost"
                   onClick={() => setActiveNavTab(tab.id)}
-                  className={`inline-flex items-center justify-center gap-2 h-auto px-2 ${
+                  className={`inline-flex items-center justify-center gap-2 h-auto px-2 bg-transparent hover:bg-transparent active:bg-transparent focus:bg-transparent focus-visible:ring-0 ${
                     tab.id === activeNavTab ? "text-gray-200" : "text-gray-400"
                   }`}
                   whileHover={{ y: -1, color: "#e5e7eb" }}
@@ -453,7 +453,7 @@ export const TradeDesktop = (): JSX.Element => {
 
                       <MotionButton 
                         onClick={handlePlaceOrder}
-                        className="flex justify-center px-3 py-2 w-full bg-[#8cf056] rounded-sm items-center h-auto mt-4"
+                        className="flex justify-center px-3 py-2 w-full bg-[#8cf056] hover:bg-[#8cf056] active:bg-[#8cf056] focus:bg-[#8cf056] focus-visible:ring-0 rounded-sm items-center h-auto mt-4"
                         whileHover={{ y: -2, boxShadow: "0 8px 24px rgba(140,240,86,0.35)", filter: "brightness(1.05)" }}
                         whileTap={{ scale: 0.98, y: 0 }}
                         transition={{ type: "spring", stiffness: 500, damping: 30 }}
@@ -667,7 +667,7 @@ export const TradeDesktop = (): JSX.Element => {
 
                 <div className="flex items-center justify-around px-4 py-3 mt-4 border border-[#7878801f] rounded-lg backdrop-blur-[30px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(30px)_brightness(100%)] shadow-blur-60 bg-[rgb(15,15,15)]">
                   <div className="flex items-center gap-2 w-full">
-                    <Button variant="outline" className="flex justify-between px-2 py-1 flex-1 bg-[rgb(29,29,29)] rounded items-center h-auto border-[#7878801f] hover:border-[#8cf056]/50 transition-colors">
+                    <Button variant="outline" className="flex justify-between px-2 py-1 flex-1 bg-[rgb(29,29,29)] hover:bg-[rgb(29,29,29)] active:bg-[rgb(29,29,29)] focus:bg-[rgb(29,29,29)] focus-visible:ring-0 rounded items-center h-auto border-[#7878801f] hover:border-[#8cf056]/50 transition-colors">
                       <div className="inline-flex items-center gap-1">
                         <div className="flex w-5 h-5 items-center gap-[3.33px] p-0.5 bg-white rounded-sm">
                           <img className="w-[15px] h-[15px]" alt="Image" src="/image-4.png" />
@@ -679,7 +679,7 @@ export const TradeDesktop = (): JSX.Element => {
                       <ChevronDownIcon className="w-6 h-6" />
                     </Button>
 
-                    <Button variant="outline" className="flex gap-2 px-2 py-1.5 flex-1 bg-[rgb(29,29,29)] rounded items-center h-auto border-[#7878801f] hover:border-[#8cf056]/50 transition-colors">
+                    <Button variant="outline" className="flex gap-2 px-2 py-1.5 flex-1 bg-[rgb(29,29,29)] hover:bg-[rgb(29,29,29)] active:bg-[rgb(29,29,29)] focus:bg-[rgb(29,29,29)] focus-visible:ring-0 rounded items-center h-auto border-[#7878801f] hover:border-[#8cf056]/50 transition-colors">
                       <InfoIcon className="w-5 h-5" />
                       <div className="font-body-2-semi-bold font-[number:var(--body-2-semi-bold-font-weight)] text-[#ffffffd1] text-[length:var(--body-2-semi-bold-font-size)]">
                         View team info
