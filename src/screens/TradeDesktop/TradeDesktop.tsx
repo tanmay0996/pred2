@@ -155,7 +155,7 @@ export const TradeDesktop = (): JSX.Element => {
           }
         }
         .animate-border-spin {
-          animation: border-spin 3s linear infinite;
+          animation: border-spin 6s linear infinite;
         }
       `}</style>
       
@@ -175,7 +175,7 @@ export const TradeDesktop = (): JSX.Element => {
                   className="inline-flex gap-2 px-2 py-1 h-auto"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25, duration: 0.8 }}
                 >
                   <div className="inline-flex items-center gap-1">
                     <div className="flex w-5 h-5 items-center gap-[3.33px] p-0.5 bg-white rounded-sm">
@@ -197,7 +197,7 @@ export const TradeDesktop = (): JSX.Element => {
                     className="inline-flex justify-center gap-1 px-3 py-2 rounded-sm border-0 h-auto bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)] relative"
                     whileHover={{ scale: 1.04, boxShadow: "0 0 20px rgba(140,240,86,0.25)" }}
                     whileTap={{ scale: 0.98 }}
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25, duration: 0.8 }}
                   >
                     <img className="w-4 h-4" alt="Image" src="/image-18.png" />
                     <div className="font-body-2-semi-bold font-[number:var(--body-2-semi-bold-font-weight)] text-[#ffffffd1] text-[length:var(--body-2-semi-bold-font-size)]">
@@ -208,10 +208,10 @@ export const TradeDesktop = (): JSX.Element => {
                 <MotionButton
                   variant="outline"
                   size="icon"
-                  className="p-1 rounded-sm overflow-hidden border border-solid border-[#7878801f] h-auto bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)]"
+                  className="p-1 rounded-sm overflow-hidden border border-solid border-[#ffffff33] h-auto bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)]"
                   whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25, duration: 0.8 }}
                 >
                   <div className="w-[25.88px] h-[25.88px] rounded-[86.13px] border-[0.94px] border-solid border-white">
                     <div className="w-[92.75%] h-[92.75%] rounded-xl bg-[linear-gradient(180deg,rgba(157,253,227,1)_0%,rgba(227,131,216,1)_100%)]" />
@@ -231,7 +231,7 @@ export const TradeDesktop = (): JSX.Element => {
                   }`}
                   whileHover={{ y: -1, color: "#e5e7eb" }}
                   whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25, duration: 0.8 }}
                 >
                   <div className="gap-1 inline-flex items-center justify-center">
                     {tab.icon && tab.id === "live" && <PlayCircleIcon className="w-4 h-4" />}
@@ -315,10 +315,10 @@ export const TradeDesktop = (): JSX.Element => {
                         <MotionButton 
                           variant="outline" 
                           onClick={() => setIsOrderTypeOpen(!isOrderTypeOpen)}
-                          className="flex h-8 items-center justify-between pl-2 pr-1 py-0 w-full rounded-sm border border-solid border-[#7878801f] bg-[rgb(29,29,29)] hover:border-[#8cf056]/50 hover:bg-[#ffffff0a] transition-colors"
-                          whileHover={{ scale: 1.01 }}
-                          whileTap={{ scale: 0.99 }}
-                          transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                          className="flex h-8 items-center justify-between pl-2 pr-1 py-0 w-full rounded-sm border border-solid border-[#7878801f] bg-[rgb(29,29,29)] hover:border-[#8cf056]/50 hover:bg-[#ffffff0a] transition-colors duration-300"
+                          whileHover={{ scale: 1.01, transition: { duration: 0.4, ease: "easeInOut" } }}
+                          whileTap={{ scale: 0.99, transition: { duration: 0.4, ease: "easeInOut" } }}
+                          transition={{ type: "spring", stiffness: 300, damping: 25, duration: 0.8 }}
                         >
                           <div className="font-body-2-medium font-[number:var(--body-2-medium-font-weight)] text-[#ffffffd1] text-[length:var(--body-2-medium-font-size)]">
                             {orderType === "market" ? "Market Price" : "Limit Price"}
@@ -329,13 +329,13 @@ export const TradeDesktop = (): JSX.Element => {
                           <div className="absolute top-full left-0 right-0 mt-1 bg-[rgb(29,38,40)] border border-[#ffffff33] rounded-sm z-50">
                             <button 
                               onClick={() => { setOrderType("market"); setIsOrderTypeOpen(false); }}
-                              className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a] transition-colors"
+                              className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a] transition-colors duration-300"
                             >
                               Market Price
                             </button>
                             <button 
                               onClick={() => { setOrderType("limit"); setIsOrderTypeOpen(false); }}
-                              className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a] transition-colors"
+                              className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a] transition-colors duration-300"
                             >
                               Limit Price
                             </button>
@@ -347,10 +347,10 @@ export const TradeDesktop = (): JSX.Element => {
                         <MotionButton 
                           variant="outline" 
                           onClick={() => setIsCurrencyOpen(!isCurrencyOpen)}
-                          className="flex h-8 items-center justify-between pl-2 pr-1 py-0 w-full rounded-sm border border-solid border-[#7878801f] bg-[rgb(29,29,29)] hover:border-[#8cf056]/50 hover:bg-[#ffffff0a] transition-colors"
-                          whileHover={{ scale: 1.01 }}
-                          whileTap={{ scale: 0.99 }}
-                          transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                          className="flex h-8 items-center justify-between pl-2 pr-1 py-0 w-full rounded-sm border border-solid border-[#7878801f] bg-[rgb(29,29,29)] hover:border-[#8cf056]/50 hover:bg-[#ffffff0a] transition-colors duration-300"
+                          whileHover={{ scale: 1.01, transition: { duration: 0.4, ease: "easeInOut" } }}
+                          whileTap={{ scale: 0.99, transition: { duration: 0.4, ease: "easeInOut" } }}
+                          transition={{ type: "spring", stiffness: 300, damping: 25, duration: 0.8 }}
                         >
                           <div className="font-body-2-medium font-[number:var(--body-2-medium-font-weight)] text-[#ffffffd1] text-[length:var(--body-2-medium-font-size)]">
                             {currencyType === "usdc" ? "USDC" : "Shares"}
@@ -361,13 +361,13 @@ export const TradeDesktop = (): JSX.Element => {
                           <div className="absolute top-full left-0 right-0 mt-1 bg-[rgb(29,38,40)] border border-[#ffffff33] rounded-sm z-50">
                             <button 
                               onClick={() => { setCurrencyType("usdc"); setIsCurrencyOpen(false); }}
-                              className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a] transition-colors"
+                              className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a] transition-colors duration-300"
                             >
                               USDC
                             </button>
                             <button 
                               onClick={() => { setCurrencyType("shares"); setIsCurrencyOpen(false); }}
-                              className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a] transition-colors"
+                              className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a] transition-colors duration-300"
                             >
                               Shares
                             </button>
@@ -382,11 +382,11 @@ export const TradeDesktop = (): JSX.Element => {
                           </div>
                         </div>
 
-                        <div className="flex h-8 items-center gap-2 px-1 py-0 w-full rounded-sm border border-solid border-[#7878801f] hover:border-[#8cf056]/50 transition-colors">
+                        <div className="flex h-8 items-center gap-2 px-1 py-0 w-full rounded-sm border border-solid border-[#7878801f] hover:border-[#8cf056]/50 transition-colors duration-300">
                           <button
                             type="button"
                             onClick={handleMinusClick}
-                            className="inline-flex items-center justify-center w-6 h-6 rounded-sm text-[#ffffffcc] hover:text-white hover:bg-white/10 transition-colors"
+                            className="inline-flex items-center justify-center w-6 h-6 rounded-sm text-[#ffffffcc] hover:text-white hover:bg-white/10 transition-colors duration-300"
                             aria-label="Decrease amount"
                           >
                             <MinusIcon className="w-4 h-4" />
@@ -395,12 +395,12 @@ export const TradeDesktop = (): JSX.Element => {
                             placeholder={inputPlaceholder}
                             value={inputValue}
                             onChange={handleAmountChange}
-                            className="flex-1 font-body-2-medium font-[number:var(--body-2-medium-font-weight)] text-[#ffffff66] text-[length:var(--body-2-medium-font-size)] border-0 bg-transparent p-0 h-auto text-center hover:bg-[#ffffff0a] transition-colors"
+                            className="flex-1 font-body-2-medium font-[number:var(--body-2-medium-font-weight)] text-[#ffffff66] text-[length:var(--body-2-medium-font-size)] border-0 bg-transparent p-0 h-auto text-center hover:bg-[#ffffff0a] transition-colors duration-300"
                           />
                           <button
                             type="button"
                             onClick={handlePlusClick}
-                            className="inline-flex items-center justify-center w-6 h-6 rounded-sm text-[#ffffffcc] hover:text-white hover:bg-white/10 transition-colors"
+                            className="inline-flex items-center justify-center w-6 h-6 rounded-sm text-[#ffffffcc] hover:text-white hover:bg-white/10 transition-colors duration-300"
                             aria-label="Increase amount"
                           >
                             <PlusIcon className="w-4 h-4" />
@@ -417,7 +417,7 @@ export const TradeDesktop = (): JSX.Element => {
                                 className="inline-flex items-center justify-center gap-2.5 px-1 py-0.5 rounded-sm border border-solid border-[#7878801f] h-auto bg-transparent hover:bg-[#ffffff0a] hover:border-[#8cf056]/50 shadow-none focus-visible:ring-0"
                                 whileHover={{ scale: 1.06 }}
                                 whileTap={{ scale: 0.96 }}
-                                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                                transition={{ type: "spring", stiffness: 300, damping: 25, duration: 0.8 }}
                               >
                                 <div className="[font-family:'Inter',Helvetica] font-medium text-[#ffffff66] text-xs">
                                   {option.label}
@@ -456,7 +456,7 @@ export const TradeDesktop = (): JSX.Element => {
                         className="flex justify-center px-3 py-2 w-full bg-[#8cf056] hover:bg-[#8cf056] active:bg-[#8cf056] focus:bg-[#8cf056] focus-visible:ring-0 rounded-sm items-center h-auto mt-4"
                         whileHover={{ y: -2, boxShadow: "0 8px 24px rgba(140,240,86,0.35)", filter: "brightness(1.05)" }}
                         whileTap={{ scale: 0.98, y: 0 }}
-                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                        transition={{ type: "spring", stiffness: 300, damping: 25, duration: 0.8 }}
                       >
                         <div className="flex-1 font-[number:var(--button-bold-font-weight)] text-[#111111] font-button-bold text-[length:var(--button-bold-font-size)]">
                           {tradeType === "long" ? "Long MANC" : "Short MANC"}
@@ -493,13 +493,13 @@ export const TradeDesktop = (): JSX.Element => {
                     ))}
 
                     <div className="flex flex-col items-start gap-2.5 px-4 py-2 w-full border-t [border-top-style:solid] border-b [border-bottom-style:solid] border-[#7878801f] backdrop-blur-[20px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(20px)_brightness(100%)] shadow-blur-40">
-  <div className="flex items-center justify-between w-full">
-    <div className="font-body-1-semi-bold font-[number:var(--body-1-semi-bold-font-weight)] text-[#ffffffd1] text-[length:var(--body-1-semi-bold-font-size)]">
-      29.9¢
-    </div>
-    <GiftIcon className="w-4 h-4 text-white" />
-  </div>
-</div>
+                      <div className="flex items-center justify-between w-full">
+                        <div className="font-body-1-semi-bold font-[number:var(--body-1-semi-bold-font-weight)] text-[#ffffffd1] text-[length:var(--body-1-semi-bold-font-size)]">
+                          29.9¢
+                        </div>
+                        <GiftIcon className="w-4 h-4 text-white" />
+                      </div>
+                    </div>
 
                     {orderBookBuyData.map((order, index) => (
                       <motion.div key={`buy-${index}`} className="h-8 items-center justify-end w-full flex" whileHover={{ backgroundColor: "rgba(255,255,255,0.05)" }} transition={{ duration: 0.15 }}>
@@ -527,10 +527,10 @@ export const TradeDesktop = (): JSX.Element => {
                   <MotionButton
                     variant="ghost"
                     size="icon"
-                    className="w-6 h-6 hover:bg-[#ffffff1a] transition-colors"
+                    className="w-6 h-6 hover:bg-[#ffffff1a] transition-colors duration-300"
                     whileHover={{ scale: 1.12 }}
                     whileTap={{ scale: 0.95 }}
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25, duration: 0.8 }}
                   >
                     <MoreHorizontalIcon className="w-4 h-4" />
                   </MotionButton>
@@ -546,7 +546,7 @@ export const TradeDesktop = (): JSX.Element => {
                       <TabsTrigger
                         key={tab.id}
                         value={tab.id}
-                        className="gap-2.5 inline-flex items-center justify-center !bg-transparent p-0 h-auto data-[state=active]:shadow-none data-[state=active]:!bg-transparent data-[state=active]:text-inherit hover:!bg-transparent hover:text-gray-200 transition-colors"
+                        className="gap-2.5 inline-flex items-center justify-center !bg-transparent p-0 h-auto data-[state=active]:shadow-none data-[state=active]:!bg-transparent data-[state=active]:text-inherit hover:!bg-transparent hover:text-gray-200 transition-colors duration-300"
                       >
                         <div
                           className={`text-[length:var(--body-2-semi-bold-font-size)] leading-[var(--body-2-semi-bold-line-height)] font-body-2-semi-bold font-[number:var(--body-2-semi-bold-font-weight)] ${
@@ -634,10 +634,10 @@ export const TradeDesktop = (): JSX.Element => {
                         <div className="flex items-start gap-2 w-full">
                           <MotionButton 
                             onClick={() => handleClosePosition(position.id)}
-                            className="flex justify-center px-3 py-2 flex-1 bg-[#78788033] rounded-sm backdrop-blur-[30px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(30px)_brightness(100%)] shadow-blur-60 h-auto hover:bg-[#78788050] transition-colors"
-                            whileHover={{ y: -2 }}
+                            className="flex justify-center px-3 py-2 flex-1 bg-[#78788033] rounded-sm backdrop-blur-[30px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(30px)_brightness(100%)] shadow-blur-60 h-auto hover:bg-[#78788050] transition-colors duration-300"
+                            whileHover={{ y: -2, transition: { duration: 0.4, ease: "easeInOut" } }}
                             whileTap={{ scale: 0.98, y: 0 }}
-                            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 25, duration: 0.8 }}
                           >
                             <div className="font-[number:var(--body-2-semi-bold-font-weight)] text-[#ffffffd1] font-body-2-semi-bold text-[length:var(--body-2-semi-bold-font-size)]">
                               Market close
@@ -645,10 +645,10 @@ export const TradeDesktop = (): JSX.Element => {
                           </MotionButton>
                           <MotionButton 
                             onClick={() => handleClosePosition(position.id)}
-                            className="flex justify-center px-3 py-2 flex-1 bg-[#78788033] rounded-sm backdrop-blur-[30px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(30px)_brightness(100%)] shadow-blur-60 h-auto hover:bg-[#78788050] transition-colors"
-                            whileHover={{ y: -2 }}
+                            className="flex justify-center px-3 py-2 flex-1 bg-[#78788033] rounded-sm backdrop-blur-[30px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(30px)_brightness(100%)] shadow-blur-60 h-auto hover:bg-[#78788050] transition-colors duration-300"
+                            whileHover={{ y: -2, transition: { duration: 0.4, ease: "easeInOut" } }}
                             whileTap={{ scale: 0.98, y: 0 }}
-                            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                            transition={{ type: "spring", stiffness: 300, damping: 25, duration: 0.8 }}
                           >
                             <div className="font-[number:var(--body-2-semi-bold-font-weight)] text-[#ffffffd1] font-body-2-semi-bold text-[length:var(--body-2-semi-bold-font-size)]">
                               Limit close
@@ -667,7 +667,7 @@ export const TradeDesktop = (): JSX.Element => {
 
                 <div className="flex items-center justify-around px-4 py-3 mt-4 border border-[#7878801f] rounded-lg backdrop-blur-[30px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(30px)_brightness(100%)] shadow-blur-60 bg-[rgb(15,15,15)]">
                   <div className="flex items-center gap-2 w-full">
-                    <Button variant="outline" className="flex justify-between px-2 py-1 flex-1 bg-[rgb(29,29,29)] hover:bg-[rgb(29,29,29)] active:bg-[rgb(29,29,29)] focus:bg-[rgb(29,29,29)] focus-visible:ring-0 rounded items-center h-auto border-[#7878801f] hover:border-[#8cf056]/50 transition-colors">
+                    <Button variant="outline" className="flex justify-between px-2 py-1 flex-1 bg-[rgb(29,29,29)] hover:bg-[rgb(29,29,29)] active:bg-[rgb(29,29,29)] focus:bg-[rgb(29,29,29)] focus-visible:ring-0 rounded items-center h-auto border-[#7878801f] hover:border-[#8cf056]/50 transition-colors duration-300">
                       <div className="inline-flex items-center gap-1">
                         <div className="flex w-5 h-5 items-center gap-[3.33px] p-0.5 bg-white rounded-sm">
                           <img className="w-[15px] h-[15px]" alt="Image" src="/image-4.png" />
@@ -679,7 +679,7 @@ export const TradeDesktop = (): JSX.Element => {
                       <ChevronDownIcon className="w-6 h-6" />
                     </Button>
 
-                    <Button variant="outline" className="flex gap-2 px-2 py-1.5 flex-1 bg-[rgb(29,29,29)] hover:bg-[rgb(29,29,29)] active:bg-[rgb(29,29,29)] focus:bg-[rgb(29,29,29)] focus-visible:ring-0 rounded items-center h-auto border-[#7878801f] hover:border-[#8cf056]/50 transition-colors">
+                    <Button variant="outline" className="flex gap-2 px-2 py-1.5 flex-1 bg-[rgb(29,29,29)] hover:bg-[rgb(29,29,29)] active:bg-[rgb(29,29,29)] focus:bg-[rgb(29,29,29)] focus-visible:ring-0 rounded items-center h-auto border-[#7878801f] hover:border-[#8cf056]/50 transition-colors duration-300">
                       <InfoIcon className="w-5 h-5" />
                       <div className="font-body-2-semi-bold font-[number:var(--body-2-semi-bold-font-weight)] text-[#ffffffd1] text-[length:var(--body-2-semi-bold-font-size)]">
                         View team info

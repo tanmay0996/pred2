@@ -5,7 +5,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const navigationTabs = [
   { id: "live", label: "Live & Upcoming", icon: true },
@@ -68,6 +68,34 @@ const bottomNavItems = [
 
 export const Trade = (): JSX.Element => {
   const MotionButton = motion(Button as any);
+  const containerFade = {
+    hidden: { opacity: 0, y: 12 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.25 } },
+  };
+  const listStagger = {
+    hidden: {},
+    show: { transition: { staggerChildren: 0.06 } },
+  };
+  const itemFade = {
+    hidden: { opacity: 0, y: 8 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.2 } },
+  };
+  const fromTop = {
+    hidden: { opacity: 0, y: -16 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.25 } },
+  };
+  const fromLeft = {
+    hidden: { opacity: 0, x: -24 },
+    show: { opacity: 1, x: 0, transition: { duration: 0.3 } },
+  };
+  const fromRight = {
+    hidden: { opacity: 0, x: 24 },
+    show: { opacity: 1, x: 0, transition: { duration: 0.3 } },
+  };
+  const fromBottom = {
+    hidden: { opacity: 0, y: 16 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+  };
   const [tradeType, setTradeType] = useState("long");
   const [activeNavTab, setActiveNavTab] = useState("live");
   const [activePositionTab, setActivePositionTab] = useState("positions");
@@ -136,7 +164,7 @@ export const Trade = (): JSX.Element => {
           to { transform: rotate(360deg); }
         }
         .animate-border {
-          animation: spin-slow 3s linear infinite;
+          animation: spin-slow 8s linear infinite;
         }
         @keyframes border-spin {
           0% {
@@ -147,7 +175,7 @@ export const Trade = (): JSX.Element => {
           }
         }
         .animate-border-spin {
-          animation: border-spin 3s linear infinite;
+          animation: border-spin 8s linear infinite;
         }
         .animate-border-spin::before {
           content: '';
@@ -159,18 +187,18 @@ export const Trade = (): JSX.Element => {
           -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
           -webkit-mask-composite: xor;
           mask-composite: exclude;
-          animation: border-spin 3s linear infinite;
+          animation: border-spin 6s linear infinite;
         }
       `}</style>
-      <div className="flex w-[412px] h-screen relative flex-col">
+      <motion.div className="flex w-[412px] h-screen relative flex-col" initial="hidden" animate="show" variants={containerFade}>
        
         <div className="relative w-[412px] flex-1 overflow-y-auto pb-[180px]">
           <div className="absolute top-0 left-0 w-[412px] h-[811px] flex items-center justify-center bg-gray-900 overflow-hidden pointer-events-none">
             <div className="mt-[-540.3px] h-[1146.73px] w-[814px] rounded-[407px/573.37px] blur-[52.45px] [background:radial-gradient(50%_50%_at_50%_26%,rgba(98,98,98,0.3)_0%,rgba(45,106,126,0.3)_52%,rgba(22,43,50,0.37)_99%)]" />
           </div>
 
-          <div className="flex flex-col w-[412px] items-start relative">
-            <nav className="flex items-center justify-between p-4 relative self-stretch w-full backdrop-blur-[30px] bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)]">
+          <motion.div className="flex flex-col w-[412px] items-start relative" variants={listStagger}>
+            <motion.nav className="flex items-center justify-between p-4 relative self-stretch w-full backdrop-blur-[30px] bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)]" variants={fromTop}>
               <div className="inline-flex items-center gap-2">
                 <img
                   className="relative w-8 h-8"
@@ -182,7 +210,7 @@ export const Trade = (): JSX.Element => {
                   className="gap-2 px-2 py-1 h-auto"
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25, duration: 0.8 }}
                 >
                   <div className="inline-flex items-center gap-1">
                     <div className="flex w-5 h-5 items-center gap-[3.33px] p-0.5 bg-white rounded-sm">
@@ -210,7 +238,7 @@ export const Trade = (): JSX.Element => {
                     className="gap-1 px-3 py-2 h-auto border-[#7878801f] bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)] relative"
                     whileHover={{ scale: 1.04, boxShadow: "0 0 20px rgba(140,240,86,0.25)" }}
                     whileTap={{ scale: 0.98 }}
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25, duration: 0.8 }}
                   >
                     <img
                       className="relative w-4 h-4"
@@ -228,16 +256,16 @@ export const Trade = (): JSX.Element => {
                   className="p-1 h-auto border-[#7878801f] bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)]"
                   whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25, duration: 0.8 }}
                 >
                   <div className="relative w-[25.88px] h-[25.88px] mt-[-0.94px] mb-[-0.94px] ml-[-0.94px] mr-[-0.94px] rounded-[86.13px] border-[0.94px] border-solid border-white">
                     <div className="w-[92.75%] h-[92.75%] rounded-xl bg-[linear-gradient(180deg,rgba(157,253,227,1)_0%,rgba(227,131,216,1)_100%)]" />
                   </div>
                 </MotionButton>
               </div>
-            </nav>
+            </motion.nav>
 
-            <nav className="flex w-[412px] items-center gap-4 px-4 py-3 border-t border-b border-[#7878801f] bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]">
+            <motion.nav className="flex w-[412px] items-center gap-4 px-4 py-3 border-t border-b border-[#7878801f] bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]" variants={fromLeft}>
               {navigationTabs.map((tab) => (
                 <MotionButton
                   key={tab.id}
@@ -246,7 +274,7 @@ export const Trade = (): JSX.Element => {
                   className={`gap-2 h-auto px-0 ${tab.id === activeNavTab ? "text-gray-200" : "text-gray-400"}`}
                   whileHover={{ y: -1, color: "#e5e7eb" }}
                   whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25, duration: 0.8 }}
                 >
                   {tab.icon && tab.id === "live" && <PlayCircle className="w-4 h-4" />}
                   {!tab.icon && (
@@ -261,9 +289,9 @@ export const Trade = (): JSX.Element => {
                   <div className="text-sm font-semibold whitespace-nowrap">{tab.label}</div>
                 </MotionButton>
               ))}
-            </nav>
+            </motion.nav>
 
-            <section className="flex w-[412px] items-start justify-between p-4 backdrop-blur-[30px] bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)]">
+            <motion.section className="flex w-[412px] items-start justify-between p-4 backdrop-blur-[30px] bg-[linear-gradient(180deg,rgb(29,38,40)_0%,rgba(29,38,40,0.8)_100%)]" variants={fromRight}>
               <div className="inline-flex items-center gap-2">
                 <div className="flex w-9 h-9 items-center justify-center gap-2.5 rounded-sm">
                   <div className="relative w-[32.0px] h-[32.0px] bg-[url(/chelsea.png)] bg-cover bg-[50%_50%]" />
@@ -281,10 +309,10 @@ export const Trade = (): JSX.Element => {
                   <span className="text-gray-200">$130</span>
                 </div>
               </div>
-            </section>
+            </motion.section>
 
-            <section className="w-[412px] flex border-t border-b border-[#7878801f] bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]">
-              <div className="flex flex-col items-start px-0 py-3 flex-1">
+            <motion.section className="w-[412px] flex border-t border-b border-[#7878801f] bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]" variants={itemFade}>
+              <motion.div className="flex flex-col items-start px-0 py-3 flex-1" variants={fromLeft}>
                 <div className="flex flex-col items-start gap-2.5 px-4 py-0 w-full">
                   <ToggleGroup
                     type="single"
@@ -313,29 +341,42 @@ export const Trade = (): JSX.Element => {
                       variant="outline" 
                       onClick={() => setIsOrderTypeOpen(!isOrderTypeOpen)}
                       className="flex h-8 items-center justify-between pl-2 pr-1 py-0 w-full rounded-sm border-[#ffffff33] bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)] transition-all duration-200 hover:scale-[1.01] hover:border-[#ffffff55]"
-                      whileHover={{ scale: 1.01 }}
-                      whileTap={{ scale: 0.99 }}
-                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                      whileHover={{ scale: 1.01, transition: { duration: 0.6, ease: "easeInOut" } }}
+                      whileTap={{ scale: 0.99, transition: { duration: 0.6, ease: "easeInOut" } }}
+                      transition={{ 
+                        type: "spring", 
+                        stiffness: 200, 
+                        damping: 20, 
+                        duration: 1.2 
+                      }}
                     >
                       <div className="text-gray-200 text-sm">{orderType === "market" ? "Market Price" : "Limit Price"}</div>
                       <ChevronDown className="w-4 h-4" />
                     </MotionButton>
+                    <AnimatePresence>
                     {isOrderTypeOpen && (
-                      <div className="absolute top-full left-0 right-0 mt-1 bg-[rgb(29,38,40)] border border-[#ffffff33] rounded-sm z-50 overflow-hidden">
+                      <motion.div
+                        initial={{ opacity: 0, y: -6, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -6, scale: 0.98 }}
+                        transition={{ duration: 0.6 }}
+                        className="absolute top-full left-0 right-0 mt-1 bg-[rgb(29,38,40)] border border-[#ffffff33] rounded-sm z-50 overflow-hidden"
+                      >
                         <button 
                           onClick={() => { setOrderType("market"); setIsOrderTypeOpen(false); }}
-                          className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a] transition-colors duration-150"
+                          className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a] transition-colors duration-300"
                         >
                           Market Price
                         </button>
                         <button 
                           onClick={() => { setOrderType("limit"); setIsOrderTypeOpen(false); }}
-                          className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a] transition-colors duration-150"
+                          className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a] transition-colors duration-300"
                         >
                           Limit Price
                         </button>
-                      </div>
+                      </motion.div>
                     )}
+                    </AnimatePresence>
                   </div>
 
                   <div className="relative w-full">
@@ -343,29 +384,42 @@ export const Trade = (): JSX.Element => {
                       variant="outline" 
                       onClick={() => setIsCurrencyOpen(!isCurrencyOpen)}
                       className="flex h-8 items-center justify-between pl-2 pr-1 py-0 w-full rounded-sm border-[#ffffff33] bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)] transition-all duration-200 hover:scale-[1.01] hover:border-[#ffffff55]"
-                      whileHover={{ scale: 1.01 }}
-                      whileTap={{ scale: 0.99 }}
-                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                      whileHover={{ scale: 1.01, transition: { duration: 0.6, ease: "easeInOut" } }}
+                      whileTap={{ scale: 0.99, transition: { duration: 0.6, ease: "easeInOut" } }}
+                      transition={{ 
+                        type: "spring", 
+                        stiffness: 200, 
+                        damping: 20, 
+                        duration: 1.2 
+                      }}
                     >
                       <div className="text-gray-200 text-sm">{currencyType === "usdc" ? "USDC" : "Shares"}</div>
                       <ChevronDown className="w-4 h-4" />
                     </MotionButton>
+                    <AnimatePresence>
                     {isCurrencyOpen && (
-                      <div className="absolute top-full left-0 right-0 mt-1 bg-[rgb(29,38,40)] border border-[#ffffff33] rounded-sm z-50 overflow-hidden">
+                      <motion.div
+                        initial={{ opacity: 0, y: -6, scale: 0.98 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: -6, scale: 0.98 }}
+                        transition={{ duration: 0.6 }}
+                        className="absolute top-full left-0 right-0 mt-1 bg-[rgb(29,38,40)] border border-[#ffffff33] rounded-sm z-50 overflow-hidden"
+                      >
                         <button 
                           onClick={() => { setCurrencyType("usdc"); setIsCurrencyOpen(false); }}
-                          className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a] transition-colors duration-150"
+                          className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a] transition-colors duration-300"
                         >
                           USDC
                         </button>
                         <button 
                           onClick={() => { setCurrencyType("shares"); setIsCurrencyOpen(false); }}
-                          className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a] transition-colors duration-150"
+                          className="w-full px-2 py-2 text-left text-gray-200 text-sm hover:bg-[#ffffff1a] transition-colors duration-300"
                         >
                           Shares
                         </button>
-                      </div>
+                      </motion.div>
                     )}
+                    </AnimatePresence>
                   </div>
 
                   <div className="flex flex-col items-end w-full">
@@ -410,7 +464,12 @@ export const Trade = (): JSX.Element => {
                             className="px-1 py-0.5 h-auto rounded-sm border-[#ffffff33] bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]"
                             whileHover={{ scale: 1.06 }}
                             whileTap={{ scale: 0.96 }}
-                            transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                            transition={{ 
+                        type: "spring", 
+                        stiffness: 200, 
+                        damping: 20, 
+                        duration: 1.2 
+                      }}
                           >
                             <div className="text-gray-400 text-xs">{option.label}</div>
                           </MotionButton>
@@ -439,18 +498,18 @@ export const Trade = (): JSX.Element => {
                   <MotionButton 
                     onClick={handlePlaceOrder}
                     className="flex justify-center px-3 py-2 w-full bg-[#8cf056] rounded-sm h-auto mt-4"
-                    whileHover={{ y: -2, boxShadow: "0 8px 24px rgba(140,240,86,0.35)", filter: "brightness(1.05)" }}
+                    whileHover={{ y: -2, boxShadow: "0 8px 24px rgba(140,240,86,0.35)", filter: "brightness(1.05)", transition: { duration: 0.6, ease: "easeInOut" } }}
                     whileTap={{ scale: 0.98, y: 0 }}
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25, duration: 0.8 }}
                   >
                     <div className="flex-1 text-[#111111] font-bold text-center">
                       {tradeType === "long" ? "Long MANC" : "Short MANC"}
                     </div>
                   </MotionButton>
                 </div>
-              </div>
+              </motion.div>
 
-              <aside className="flex flex-col w-[180px] border-l border-[#7878801f]">
+              <motion.aside className="flex flex-col w-[180px] border-l border-[#7878801f]" variants={fromRight}>
                 <div className="flex w-[180px] items-center px-4 py-3 border-b border-[#7878801f]">
                   <div className="flex items-center justify-between flex-1">
                     <div className="w-20 text-gray-400 text-sm">Price</div>
@@ -459,7 +518,7 @@ export const Trade = (): JSX.Element => {
                 </div>
 
                 {orderBookSellData.map((order, index) => (
-                  <motion.div key={`sell-${index}`} className="h-8 flex items-center w-full" whileHover={{ backgroundColor: "rgba(255,255,255,0.05)" }} transition={{ duration: 0.15 }}>
+                  <motion.div key={`sell-${index}`} className="h-8 flex items-center w-full" whileHover={{ backgroundColor: "rgba(255,255,255,0.05)" }} transition={{ duration: 0.6 }}>
                     <div className="flex h-8 items-center gap-4 px-4 flex-1">
                       <div className="flex items-center justify-between flex-1">
                         <div className="text-red-500 text-sm">{order.price}</div>
@@ -477,7 +536,7 @@ export const Trade = (): JSX.Element => {
 </div>
 
                 {orderBookBuyData.map((order, index) => (
-                  <motion.div key={`buy-${index}`} className="h-8 flex items-center w-full" whileHover={{ backgroundColor: "rgba(255,255,255,0.05)" }} transition={{ duration: 0.15 }}>
+                  <motion.div key={`buy-${index}`} className="h-8 flex items-center w-full" whileHover={{ backgroundColor: "rgba(255,255,255,0.05)" }} transition={{ duration: 0.6 }}>
                     <div className="flex h-8 items-center gap-4 px-4 flex-1">
                       <div className="flex items-center justify-between flex-1">
                         <div className="text-[#8cf056] text-sm">{order.price}</div>
@@ -486,10 +545,10 @@ export const Trade = (): JSX.Element => {
                     </div>
                   </motion.div>
                 ))}
-              </aside>
-            </section>
+              </motion.aside>
+            </motion.section>
 
-            <section className="flex items-center justify-between px-4 py-3 w-full border-b border-[#7878801f] bg-[rgb(19,28,30)]">
+            <motion.section className="flex items-center justify-between px-4 py-3 w-full border-b border-[#7878801f] bg-[rgb(19,28,30)]" variants={fromBottom}>
               <div className="text-gray-200 text-sm">EPL</div>
               <MotionButton
                 variant="ghost"
@@ -497,27 +556,29 @@ export const Trade = (): JSX.Element => {
                 className="w-6 h-6"
                 whileHover={{ scale: 1.12 }}
                 whileTap={{ scale: 0.95 }}
-                transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                transition={{ type: "spring", stiffness: 300, damping: 25, duration: 0.8 }}
               >
                 <MoreHorizontal className="w-4 h-4" />
               </MotionButton>
-            </section>
+            </motion.section>
 
+            <motion.div variants={fromLeft}>
             <Tabs value={activePositionTab} onValueChange={setActivePositionTab} className="flex flex-col items-start gap-2.5 p-4 w-full border-b border-[#7878801f] bg-gradient-to-r from-[rgb(8,15,17)] via-[rgb(12,19,22)] to-[rgb(8,15,17)]">
               <TabsList className="inline-flex items-center gap-4 bg-transparent p-0 h-auto">
                 {positionTabs.map((tab) => (
-                  <TabsTrigger key={tab.id} value={tab.id} className="gap-2.5 bg-transparent p-0 h-auto data-[state=active]:shadow-none transition-colors duration-150 hover:text-gray-200">
-                    <div className={`text-sm font-semibold transition-colors duration-150 ${activePositionTab === tab.id ? "text-gray-200" : "text-gray-500"}`}>
+                  <TabsTrigger key={tab.id} value={tab.id} className="gap-2.5 bg-transparent p-0 h-auto data-[state=active]:shadow-none transition-colors duration-500 hover:text-gray-200">
+                    <div className={`text-sm font-semibold transition-colors duration-500 ${activePositionTab === tab.id ? "text-gray-200" : "text-gray-500"}`}>
                       {tab.label}
                     </div>
                   </TabsTrigger>
                 ))}
               </TabsList>
             </Tabs>
+            </motion.div>
 
-            <section className="flex flex-col w-[412px] items-start p-4 relative">
+            <motion.section className="flex flex-col w-[412px] items-start p-4 relative" variants={listStagger}>
               {positions.map((position, idx) => (
-                <motion.div key={position.id} className={`w-full relative ${idx < positions.length - 1 ? 'border-b border-[#7878801f] pb-4 mb-4' : 'pb-4'}`} whileHover={{ backgroundColor: "rgba(255,255,255,0.05)" }} transition={{ duration: 0.15 }}>
+                <motion.div key={position.id} variants={fromBottom} className={`w-full relative ${idx < positions.length - 1 ? 'border-b border-[#7878801f] pb-4 mb-4' : 'pb-4'}`} whileHover={{ backgroundColor: "rgba(255,255,255,0.05)" }} transition={{ duration: 0.6 }}>
                   <div className="absolute top-0 left-0 w-0.5 h-6">
                     <div className={`h-full rounded-[20px] ${position.type === "long" ? "bg-[#8cf056]" : "bg-red-500"}`} />
                   </div>
@@ -571,9 +632,18 @@ export const Trade = (): JSX.Element => {
                     <MotionButton 
                       onClick={() => handleClosePosition(position.id)}
                       className="flex justify-center px-3 py-2 flex-1 bg-[#78788033] rounded-sm h-auto"
-                      whileHover={{ y: -2, backgroundColor: "rgba(120,120,128,0.4)" }}
+                      whileHover={{ 
+                        y: -2, 
+                        backgroundColor: "rgba(120,120,128,0.4)",
+                        transition: { duration: 0.6, ease: "easeInOut" } 
+                      }}
                       whileTap={{ scale: 0.98, y: 0 }}
-                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                      transition={{ 
+                        type: "spring", 
+                        stiffness: 200, 
+                        damping: 20, 
+                        duration: 1.2 
+                      }}
                     >
                       <div className="text-gray-200 text-sm font-semibold whitespace-nowrap">Market close</div>
                     </MotionButton>
@@ -581,17 +651,26 @@ export const Trade = (): JSX.Element => {
                     <MotionButton 
                       onClick={() => handleClosePosition(position.id)}
                       className="flex justify-center px-3 py-2 flex-1 bg-[#78788033] rounded-sm h-auto"
-                      whileHover={{ y: -2, backgroundColor: "rgba(120,120,128,0.4)" }}
+                      whileHover={{ 
+                        y: -2, 
+                        backgroundColor: "rgba(120,120,128,0.4)",
+                        transition: { duration: 0.6, ease: "easeInOut" } 
+                      }}
                       whileTap={{ scale: 0.98, y: 0 }}
-                      transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                      transition={{ 
+                        type: "spring", 
+                        stiffness: 200, 
+                        damping: 20, 
+                        duration: 1.2 
+                      }}
                     >
                       <div className="text-gray-200 text-sm font-semibold whitespace-nowrap">Limit close</div>
                     </MotionButton>
                   </div>
                 </motion.div>
               ))}
-            </section>
-          </div>
+            </motion.section>
+          </motion.div>
         </div>
 
         <footer className="fixed bottom-0 left-0 w-[412px] flex flex-col backdrop-blur-[30px] bg-[rgb(15,15,15)] z-10">
@@ -629,7 +708,7 @@ export const Trade = (): JSX.Element => {
                       src={item.icon}
                     />
                   </div>
-                  <div className={`text-xs font-semibold transition-colors duration-150 ${item.active ? "text-white" : "text-gray-400 hover:text-white"}`}>
+                  <div className={`text-xs font-semibold transition-colors duration-300 ${item.active ? "text-white" : "text-gray-400 hover:text-white"}`}>
                     {item.label}
                   </div>
                 </Button>
@@ -637,7 +716,7 @@ export const Trade = (): JSX.Element => {
             </div>
           </nav>
         </footer>
-      </div>
+      </motion.div>
     </div>
   );
 };
