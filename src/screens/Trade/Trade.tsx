@@ -706,7 +706,10 @@ export const Trade = (): JSX.Element => {
           <footer className="fixed bottom-0 left-0 w-[412px] flex flex-col backdrop-blur-[30px] bg-[rgb(15,15,15)] z-10">
             <div className="flex items-center px-4 py-3 w-full border-t border-[#7878801f]">
               <div className="flex w-full items-center gap-2">
-                <Button variant="outline" className="flex justify-between px-2 py-1 flex-1 bg-[rgb(29,29,29)] rounded h-auto border-[#7878801f]">
+                <Button 
+                  variant="outline" 
+                  className="flex justify-between px-2 py-1 flex-1 bg-[rgb(29,29,29)] rounded h-auto border-[#7878801f] hover:bg-[rgb(29,29,29)] hover:text-gray-200 focus:text-gray-200 focus:bg-[rgb(29,29,29)] active:bg-[rgb(29,29,29)]"
+                >
                   <div className="inline-flex items-center gap-1">
                     <div className="flex w-5 h-5 items-center gap-[3.33px] p-0.5 bg-white rounded-sm">
                       <img
@@ -717,11 +720,14 @@ export const Trade = (): JSX.Element => {
                     </div>
                     <div className="text-gray-200 text-sm font-semibold">Manchester city</div>
                   </div>
-                  <ChevronDown className="w-6 h-6" />
+                  <ChevronDown className="w-6 h-6 text-gray-200" />
                 </Button>
 
-                <Button variant="outline" className="flex gap-2 px-2 py-1.5 flex-1 bg-[rgb(29,29,29)] rounded h-auto border-[#7878801f]">
-                  <Info className="w-5 h-5" />
+                <Button 
+                  variant="outline" 
+                  className="flex gap-2 px-2 py-1.5 flex-1 bg-[rgb(29,29,29)] rounded h-auto border-[#7878801f] hover:bg-[rgb(29,29,29)] hover:text-gray-200 focus:text-gray-200 focus:bg-[rgb(29,29,29)] active:bg-[rgb(29,29,29)]"
+                >
+                  <Info className="w-5 h-5 text-gray-200" />
                   <div className="text-gray-200 text-sm font-semibold whitespace-nowrap">View team info</div>
                 </Button>
               </div>
