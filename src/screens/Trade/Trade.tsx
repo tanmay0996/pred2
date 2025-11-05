@@ -342,7 +342,7 @@ export const Trade = (): JSX.Element => {
               </motion.section>
 
               <motion.section className="w-[412px] flex border-t border-b border-[#7878801f] bg-gradient-to-r from-[rgb(21,31,35)] via-[rgb(25,35,40)] to-[rgb(21,31,35)]" variants={itemFade}>
-                <motion.div className="flex flex-col bg-[#0d1719] text-white flex-1">
+                <motion.div className="flex flex-col bg-[#172126] text-white flex-1">
                   <motion.div className="flex flex-col items-start gap-2.5 px-4 py-0 w-full" variants={fromLeft}>
                     <ToggleGroup
                       type="single"
